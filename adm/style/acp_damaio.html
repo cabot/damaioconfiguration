@@ -1,0 +1,195 @@
+{% INCLUDECSS '@cabot_damaioconfiguration/acp_damaio.css' %}
+{% INCLUDEJS '@cabot_damaioconfiguration/acp_damaio.js' %}
+{% INCLUDE 'overall_header.html' %}
+<h1>{{ lang('ACP_DAMAIO_HEADING') }}</h1>
+
+{% if DAMAIO_STYLE_ID %}
+	{% if DAMAIO_STYLE_COMPATIBLE %}
+		{% if not DAMAIO_STYLE_ACTIVE %}
+			<div class="successbox success">
+				<p>{{ DAMAIO_STYLE_DEACTIVATED }}</p>
+			</div>
+		{% endif %}
+	{% else %}
+	<div class="errorbox">
+		<p>{{ DAMAIO_STYLE_VERSION_INFO }}</p>
+	</div>
+	{% endif %}
+{% else %}
+	<div class="errorbox">
+		<p>{{ DAMAIO_STYLE_NOT_FOUND }}</p>
+	</div>
+{% endif %}
+
+{% if DAMAIO_STYLE_ID && DAMAIO_STYLE_COMPATIBLE %}
+<form id="acp_board" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('PREVIEW') }}</legend>
+		<dl>
+			<dt>
+				<span class="damaio-label">{{ lang('ACP_DAMAIO_PREVIEW') ~ lang('COLON') }}</span><br>
+				<span>{{ lang('ACP_DAMAIO_PREVIEW_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<a href="{{ U_DAMAIO_STYLE_PATH }}" id="damaio_iframe_preview" class="damaio-preview"><i id="damaio_icon_preview" class="fa fa-eye" aria-hidden="true" aria-hidden="true"></i>&nbsp; {{ lang('PREVIEW') }}</a>
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DAMAIO_LOGO') }}</legend>
+		<dl>
+			<dt>
+				<label for="damaio_logo_path">{{ lang('ACP_DAMAIO_LOGO_PATH') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_LOGO_PATH_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input id="damaio_logo_path" name="damaio_logo_path" type="text" size="50" value="{{ DAMAIO_LOGO_PATH }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_logo_width">{{ lang('ACP_DAMAIO_LOGO_WIDTH') ~ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input class="damaio-size" name="damaio_logo_width" type="text" size="20" placeholder="153px" value="{{ DAMAIO_LOGO_WIDTH }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_logo_height">{{ lang('ACP_DAMAIO_LOGO_HEIGHT') ~ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input class="damaio-size" name="damaio_logo_height" type="text" size="20" placeholder="57px" value="{{ DAMAIO_LOGO_HEIGHT }}">
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DAMAIO_LAYOUT') }}</legend>
+		<dl>
+			<dt>
+				<label for="damaio_modal_login">{{ lang('ACP_DAMAIO_MODAL_LOGIN') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_MODAL_LOGIN_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_modal_login" name="damaio_modal_login" value="1"{% if DAMAIO_MODAL_LOGIN eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_modal_login" value="0"{% if DAMAIO_MODAL_LOGIN eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_header_width">{{ lang('ACP_DAMAIO_HEADER_WIDTH') ~ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_header_width" name="damaio_header_width" value="1"{% if DAMAIO_HEADER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_header_width" value="0"{% if DAMAIO_HEADER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_footer_width">{{ lang('ACP_DAMAIO_FOOTER_WIDTH') ~ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_footer_width" name="damaio_footer_width" value="1"{% if DAMAIO_FOOTER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_footer_width" value="0"{% if DAMAIO_FOOTER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_password_show">{{ lang('ACP_DAMAIO_PASSWORD_SHOW') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_PASSWORD_SHOW_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_password_show" name="damaio_password_show" value="1"{% if DAMAIO_PASSWORD_SHOW eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_password_show" value="0"{% if DAMAIO_PASSWORD_SHOW eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_main_width">{{ lang('ACP_DAMAIO_MAIN_WIDTH') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_MAIN_WIDTH_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input name="damaio_main_width" type="text" size="20" placeholder="1152px" value="{{ DAMAIO_MAIN_WIDTH }}">
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DAMAIO_COLORS') }}</legend>
+		<div class="damaio-fieldset-info">{{ lang('ACP_DAMAIO_COLORS_EXPLAIN') }}</div>
+		{% macro color(label, explain, id, name, value, placeholder) %}
+		<dl>
+			<dt>
+				<label for="{{ name }}">{{ label }}{{ lang('COLON') }}</label><br>
+				<span>{{ explain }}</span>
+			</dt>
+			<dd>
+				<input id="{{ id }}" class="damaio-maincolor" name="{{ name }}" value="{{ value|e }}" placeholder="{{ placeholder }}" type="text" size="20">
+			</dd>
+		</dl>
+		{% endmacro %}
+		{% import _self as definitionlist %}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR1'), lang('ACP_DAMAIO_MAINCOLOR1_EXPLAIN'), "maincolor1", "damaio_maincolor1", DAMAIO_MAINCOLOR1, "#2b5b84") }}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR2'), lang('ACP_DAMAIO_MAINCOLOR2_EXPLAIN'), "maincolor2", "damaio_maincolor2", DAMAIO_MAINCOLOR2, "#1e91fc") }}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR3'), lang('ACP_DAMAIO_MAINCOLOR3_EXPLAIN'), "maincolor3", "damaio_maincolor3", DAMAIO_MAINCOLOR3, "#4889c5") }}
+		<dl>
+			<dt>
+				<label for="damaio_color_picker">{{ lang('ACP_DAMAIO_COLOR_PICKER') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_COLOR_PICKER_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_color_picker" name="damaio_color_picker" value="1"{% if DAMAIO_COLOR_PICKER eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_color_picker" value="0"{% if DAMAIO_COLOR_PICKER eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DAMAIO_FOOTER_ICONS') }}</legend>
+		<div class="damaio-fieldset-info">{{ lang('ACP_DAMAIO_FOOTER_ICONS_EXPLAIN') }}</div>
+		{% macro social(label, name, value) %}
+		<dl>
+			<dt>
+				<label for="{{ name }}">{{ label }}{{ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input class="damaio-footer-icon" name="{{ name }}" value="{{ value|e }}" type="url" size="50">
+			</dd>
+		</dl>
+		{% endmacro %}
+		{% import _self as definitionlist %}
+		{{ definitionlist.social(lang('ACP_DAMAIO_DEVIANTART'), "damaio_icon_deviantart", DAMAIO_DEVIANTART) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_FACEBOOK'), "damaio_icon_facebook", DAMAIO_FACEBOOK) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_FLICKR'), "damaio_icon_flickr", DAMAIO_FLICKR) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_GITHUB'), "damaio_icon_github", DAMAIO_GITHUB) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_INSTAGRAM'), "damaio_icon_instagram", DAMAIO_INSTAGRAM) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_LINKEDIN'), "damaio_icon_linkedin", DAMAIO_LINKEDIN) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_PINTEREST'), "damaio_icon_pinterest", DAMAIO_PINTEREST) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_REDDIT'), "damaio_icon_reddit", DAMAIO_REDDIT) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SKYPE'), "damaio_icon_skype", DAMAIO_SKYPE) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SNAPCHAT'), "damaio_icon_snapchat", DAMAIO_SNAPCHAT) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SOUNDCLOUD'), "damaio_icon_soundcloud", DAMAIO_SOUNDCLOUD) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_STEAM'), "damaio_icon_steam", DAMAIO_STEAM) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_TUMBLR'), "damaio_icon_tumblr", DAMAIO_TUMBLR) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_TWITTER'), "damaio_icon_twitter", DAMAIO_TWITTER) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_WHATSAPP'), "damaio_icon_whatsapp", DAMAIO_WHATSAPP) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_YOUTUBE'), "damaio_icon_youtube", DAMAIO_YOUTUBE) }}
+		<dl>
+			<dt>
+				<label for="damaio_icon_feed">{{ lang('ACP_DAMAIO_FEED') ~ lang('COLON') }}</label><br>
+				<span>{{ DAMAIO_CHECK_FEED }}</span>
+			</dt>
+			<dd>
+				<input type="radio" class="radio" id="damaio_icon_feed" name="damaio_icon_feed" value="1"{% if DAMAIO_FEED eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="damaio_icon_feed" value="0"{% if DAMAIO_FEED eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+	</fieldset>
+
+	<p class="submit-buttons">
+		{{ S_FORM_TOKEN }}
+		<input id="damaio_submit" class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+		<input class="button2" type="reset" name="reset" value="{{ lang('RESET') }}">
+	</p>
+</form>
+{% endif %}
+
+{% INCLUDE 'overall_footer.html' %}

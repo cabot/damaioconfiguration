@@ -1,0 +1,29 @@
+{% if DAMAIO_EXT_LOGO_URL || DAMAIO_EXT_MAIN_WIDTH || DAMAIO_EXT_MAINCOLOR1 || DAMAIO_EXT_MAINCOLOR2 || DAMAIO_EXT_MAINCOLOR3 %}
+	<style>
+	{% if DAMAIO_EXT_LOGO_URL %}
+		{% set logopath = DAMAIO_EXT_LOGO_URL %}
+		{% if not (logopath starts with 'http://' or logopath starts with 'https://') %}
+			{% set logopath = ROOT_PATH ~ DAMAIO_EXT_LOGO_URL %}
+		{% endif %}
+		.site_logo {
+			background-image: url("{{ logopath }}");
+			{% if DAMAIO_EXT_LOGO_WIDTH %}width: {{ DAMAIO_EXT_LOGO_WIDTH }};{% endif %}
+			{% if DAMAIO_EXT_LOGO_HEIGHT %}height: {{ DAMAIO_EXT_LOGO_HEIGHT }};{% endif %}
+		}
+	{% endif %}
+	{% if DAMAIO_EXT_MAIN_WIDTH %}
+		.main-width,
+		.wrap {
+			max-width: {{ DAMAIO_EXT_MAIN_WIDTH }};
+		}
+	{% endif %}
+	{% if DAMAIO_EXT_MAINCOLOR1 || DAMAIO_EXT_MAINCOLOR2 || DAMAIO_EXT_MAINCOLOR3 %}
+		:root,
+		#getcolors {
+			{% if DAMAIO_EXT_MAINCOLOR1 %}--main-color1: {{ DAMAIO_EXT_MAINCOLOR1 }};{% endif %}
+			{% if DAMAIO_EXT_MAINCOLOR2 %}--main-color2: {{ DAMAIO_EXT_MAINCOLOR2 }};{% endif %}
+			{% if DAMAIO_EXT_MAINCOLOR3 %}--main-color3: {{ DAMAIO_EXT_MAINCOLOR3 }};{% endif %}
+		}
+	{% endif %}
+	</style>
+{% endif %}

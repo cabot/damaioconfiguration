@@ -1,0 +1,94 @@
+.damaio-label {
+	color: #4A5A73;
+	font-size: 1.00em;
+	font-weight: bold;
+	text-align: left;
+}
+
+fieldset dl:hover .damaio-label {
+	color: #000000;
+}
+
+a.damaio-preview {
+	background-color: #0289cd;
+	background: linear-gradient(to bottom, #12a3eb 0, #0289cd 100%);
+	border-radius: 3px;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 1.3em;
+	padding: 6px 12px;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 #105289;
+}
+
+.damaio-preview i {
+	font-size: 1.15em;
+}
+
+.damaio-preview:hover {
+	opacity: 0.94;
+}
+
+.damaio-overlay {
+	align-items: center;
+	animation: fadein 0.5s;
+	background: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	cursor: zoom-out;
+	display: none;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 99;
+}
+
+.damaio-overlay-content {
+	position: relative;
+	height: 90vh;
+	width: 90vw;
+}
+
+#damaio_iframe {
+	border: none;
+	height: 100%;
+	width: 100%;
+}
+
+.damaio-close-overlay {
+	--main-color: #105289;
+	--size: 32px;
+	background: #fff;
+	border-radius: 50%;
+	border: 3px solid var(--main-color);
+	box-shadow: 0 0 3px #3d3d3d;
+	box-sizing: border-box;
+	color: var(--main-color);
+	cursor: pointer;
+	height: var(--size);
+	line-height: 1;
+	position: absolute;
+	right: calc(var(--size) * -0.5);
+	top: calc(var(--size) * -0.5);
+	width: var(--size);
+	z-index: 99;
+}
+
+.damaio-close-overlay:hover {
+	--main-color: #bc2a4d;
+}
+
+.damaio-fadeout {
+	animation: fadeout 0.5s;
+}
+
+.damaio-main-info {
+	font-weight: bold;
+}
+
+.damaio-fieldset-info {
+	font-size: 0.85em;
+	margin: -0.6em 0 1em;
+	position: relative;
+}
