@@ -1,0 +1,11 @@
+{
+    "stable": {
+        "1.0": {
+            "current": "1.0.0",
+            "download": "https://github.com/cabot/damaioconfiguration/releases/latest",
+            "announcement": "https://github.com/cabot/damaioconfiguration",
+            "eol": null,
+            "security": false
+        }
+    }
+}
