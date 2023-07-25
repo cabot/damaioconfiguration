@@ -6,7 +6,7 @@
 {% if DAMAIO_STYLE_ID %}
 	{% if DAMAIO_STYLE_COMPATIBLE %}
 		{% if not DAMAIO_STYLE_ACTIVE %}
-			<div class="successbox success">
+			<div class="successbox notice">
 				<p>{{ DAMAIO_STYLE_DEACTIVATED }}</p>
 			</div>
 		{% endif %}
@@ -23,6 +23,19 @@
 
 {% if DAMAIO_STYLE_ID && DAMAIO_STYLE_COMPATIBLE %}
 <form id="acp_board" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('ACP_GENERAL_CONFIGURATION') }}</legend>
+		<dl>
+			<dt>
+				<label for="damaio_enable">{{ lang('ACP_DAMAIO_ENABLE') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_ENABLE_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input id="damaio_enable" class="radio" name="damaio_enable" type="radio" value="1"{% if DAMAIO_ENABLE %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_enable" type="radio" value="0"{% if not DAMAIO_ENABLE %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+	</fieldset>
 	<fieldset>
 		<legend>{{ lang('PREVIEW') }}</legend>
 		<dl>
@@ -51,7 +64,7 @@
 				<label for="damaio_logo_width">{{ lang('ACP_DAMAIO_LOGO_WIDTH') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input class="damaio-size" name="damaio_logo_width" type="text" size="20" placeholder="153px" value="{{ DAMAIO_LOGO_WIDTH }}">
+				<input id="damaio_logo_width" class="damaio-size" name="damaio_logo_width" type="text" size="20" placeholder="153px" value="{{ DAMAIO_LOGO_WIDTH }}">
 			</dd>
 		</dl>
 		<dl>
@@ -59,7 +72,7 @@
 				<label for="damaio_logo_height">{{ lang('ACP_DAMAIO_LOGO_HEIGHT') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input class="damaio-size" name="damaio_logo_height" type="text" size="20" placeholder="57px" value="{{ DAMAIO_LOGO_HEIGHT }}">
+				<input id="damaio_logo_height" class="damaio-size" name="damaio_logo_height" type="text" size="20" placeholder="57px" value="{{ DAMAIO_LOGO_HEIGHT }}">
 			</dd>
 		</dl>
 	</fieldset>
@@ -71,8 +84,18 @@
 				<span>{{ lang('ACP_DAMAIO_MODAL_LOGIN_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_modal_login" name="damaio_modal_login" value="1"{% if DAMAIO_MODAL_LOGIN eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_modal_login" value="0"{% if DAMAIO_MODAL_LOGIN eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_modal_login" class="radio" name="damaio_modal_login" type="radio" value="1"{% if DAMAIO_MODAL_LOGIN eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_modal_login" type="radio" value="0"{% if DAMAIO_MODAL_LOGIN eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="damaio_stickynav">{{ lang('ACP_DAMAIO_STICKYNAV') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_STICKYNAV_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input id="damaio_stickynav" class="radio" name="damaio_stickynav" type="radio" value="1"{% if DAMAIO_STICKYNAV %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_stickynav" type="radio" value="0"{% if not DAMAIO_STICKYNAV %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -80,8 +103,8 @@
 				<label for="damaio_header_width">{{ lang('ACP_DAMAIO_HEADER_WIDTH') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_header_width" name="damaio_header_width" value="1"{% if DAMAIO_HEADER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_header_width" value="0"{% if DAMAIO_HEADER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_header_width" class="radio" name="damaio_header_width" type="radio" value="1"{% if DAMAIO_HEADER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_header_width" type="radio" value="0"{% if DAMAIO_HEADER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -89,8 +112,8 @@
 				<label for="damaio_footer_width">{{ lang('ACP_DAMAIO_FOOTER_WIDTH') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_footer_width" name="damaio_footer_width" value="1"{% if DAMAIO_FOOTER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_footer_width" value="0"{% if DAMAIO_FOOTER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_footer_width" class="radio" name="damaio_footer_width" type="radio" value="1"{% if DAMAIO_FOOTER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_footer_width" type="radio" value="0"{% if DAMAIO_FOOTER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -99,8 +122,8 @@
 				<span>{{ lang('ACP_DAMAIO_PASSWORD_SHOW_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_password_show" name="damaio_password_show" value="1"{% if DAMAIO_PASSWORD_SHOW eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_password_show" value="0"{% if DAMAIO_PASSWORD_SHOW eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_password_show" class="radio" name="damaio_password_show" type="radio" value="1"{% if DAMAIO_PASSWORD_SHOW eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_password_show" type="radio" value="0"{% if DAMAIO_PASSWORD_SHOW eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -109,7 +132,7 @@
 				<span>{{ lang('ACP_DAMAIO_MAIN_WIDTH_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input name="damaio_main_width" type="text" size="20" placeholder="1152px" value="{{ DAMAIO_MAIN_WIDTH }}">
+				<input id="damaio_main_width" name="damaio_main_width" type="text" size="20" placeholder="1152px" value="{{ DAMAIO_MAIN_WIDTH }}">
 			</dd>
 		</dl>
 	</fieldset>
@@ -119,7 +142,7 @@
 		{% macro color(label, explain, id, name, value, placeholder) %}
 		<dl>
 			<dt>
-				<label for="{{ name }}">{{ label }}{{ lang('COLON') }}</label><br>
+				<label for="{{ id }}">{{ label }}{{ lang('COLON') }}</label><br>
 				<span>{{ explain }}</span>
 			</dt>
 			<dd>
@@ -128,17 +151,17 @@
 		</dl>
 		{% endmacro %}
 		{% import _self as definitionlist %}
-		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR1'), lang('ACP_DAMAIO_MAINCOLOR1_EXPLAIN'), "maincolor1", "damaio_maincolor1", DAMAIO_MAINCOLOR1, "#2b5b84") }}
-		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR2'), lang('ACP_DAMAIO_MAINCOLOR2_EXPLAIN'), "maincolor2", "damaio_maincolor2", DAMAIO_MAINCOLOR2, "#1e91fc") }}
-		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR3'), lang('ACP_DAMAIO_MAINCOLOR3_EXPLAIN'), "maincolor3", "damaio_maincolor3", DAMAIO_MAINCOLOR3, "#4889c5") }}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR1'), lang('ACP_DAMAIO_MAINCOLOR1_EXPLAIN'), 'maincolor1', 'damaio_maincolor1', DAMAIO_MAINCOLOR1, '#2b5b84') }}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR2'), lang('ACP_DAMAIO_MAINCOLOR2_EXPLAIN'), 'maincolor2', 'damaio_maincolor2', DAMAIO_MAINCOLOR2, '#1e91fc') }}
+		{{ definitionlist.color(lang('ACP_DAMAIO_MAINCOLOR3'), lang('ACP_DAMAIO_MAINCOLOR3_EXPLAIN'), 'maincolor2', 'damaio_maincolor3', DAMAIO_MAINCOLOR3, '#4889c5') }}
 		<dl>
 			<dt>
 				<label for="damaio_color_picker">{{ lang('ACP_DAMAIO_COLOR_PICKER') ~ lang('COLON') }}</label><br>
 				<span>{{ lang('ACP_DAMAIO_COLOR_PICKER_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_color_picker" name="damaio_color_picker" value="1"{% if DAMAIO_COLOR_PICKER eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_color_picker" value="0"{% if DAMAIO_COLOR_PICKER eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_color_picker" class="radio" name="damaio_color_picker" type="radio" value="1"{% if DAMAIO_COLOR_PICKER eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_color_picker" type="radio" value="0"{% if DAMAIO_COLOR_PICKER eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 	</fieldset>
@@ -151,7 +174,7 @@
 				<label for="{{ name }}">{{ label }}{{ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input class="damaio-footer-icon" name="{{ name }}" value="{{ value|e }}" type="url" size="50">
+				<input id="{{ name }}" class="damaio-footer-icon" name="{{ name }}" value="{{ value|e }}" type="url" size="50">
 			</dd>
 		</dl>
 		{% endmacro %}
@@ -178,8 +201,8 @@
 				<span>{{ DAMAIO_CHECK_FEED }}</span>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="damaio_icon_feed" name="damaio_icon_feed" value="1"{% if DAMAIO_FEED eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="damaio_icon_feed" value="0"{% if DAMAIO_FEED eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_icon_feed" class="radio" name="damaio_icon_feed" type="radio" value="1"{% if DAMAIO_FEED eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_icon_feed" type="radio" value="0"{% if DAMAIO_FEED eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 	</fieldset>
