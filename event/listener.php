@@ -60,6 +60,7 @@ class listener implements EventSubscriberInterface
 	public function damaioconfiguration($event)
 	{
 		$this->template->assign_vars([
+			'DAMAIO_EXT_ENABLE'			=> $this->config['damaio_enable'],
 			'DAMAIO_EXT_LOGO_URL'		=> $this->config['damaio_logo_path'],
 			'DAMAIO_EXT_LOGO_WIDTH'		=> $this->config['damaio_logo_width'],
 			'DAMAIO_EXT_LOGO_HEIGHT'	=> $this->config['damaio_logo_height'],
@@ -68,6 +69,7 @@ class listener implements EventSubscriberInterface
 			'DAMAIO_EXT_MAINCOLOR2'		=> $this->config['damaio_maincolor2'],
 			'DAMAIO_EXT_MAINCOLOR3'		=> $this->config['damaio_maincolor3'],
 			'DAMAIO_EXT_MODAL_LOGIN'	=> $this->config['damaio_modal_login'],
+			'DAMAIO_EXT_STICKYNAV'		=> $this->config['damaio_stickynav'],
 			'DAMAIO_EXT_HEADER_WIDTH'	=> $this->config['damaio_header_width'],
 			'DAMAIO_EXT_FOOTER_WIDTH'	=> $this->config['damaio_footer_width'],
 			'DAMAIO_EXT_PASSWORD_SHOW'	=> $this->config['damaio_password_show'],
