@@ -77,6 +77,7 @@ class damaio_module
 				trigger_error('FORM_INVALID');
 			}
 
+			$config->set('damaio_enable', $request->variable('damaio_enable', 0));
 			$config->set('damaio_logo_path', $request->variable('damaio_logo_path', ''));
 			$config->set('damaio_logo_width', $request->variable('damaio_logo_width', ''));
 			$config->set('damaio_logo_height', $request->variable('damaio_logo_height', ''));
@@ -89,6 +90,7 @@ class damaio_module
 			$config->set('damaio_footer_width', $request->variable('damaio_footer_width', 1));
 			$config->set('damaio_password_show', $request->variable('damaio_password_show', 1));
 			$config->set('damaio_main_width', $request->variable('damaio_main_width', ''));
+			$config->set('damaio_stickynav', $request->variable('damaio_stickynav', 0));
 			$config->set('damaio_icon_deviantart', $request->variable('damaio_icon_deviantart', ''));
 			$config->set('damaio_icon_facebook', $request->variable('damaio_icon_facebook', ''));
 			$config->set('damaio_icon_flickr', $request->variable('damaio_icon_flickr', ''));
@@ -115,6 +117,7 @@ class damaio_module
 		}
 
 		$template->assign_vars([
+			'DAMAIO_ENABLE'				=> $config['damaio_enable'],
 			'DAMAIO_LOGO_PATH'			=> $config['damaio_logo_path'],
 			'DAMAIO_LOGO_WIDTH'			=> $config['damaio_logo_width'],
 			'DAMAIO_LOGO_HEIGHT'		=> $config['damaio_logo_height'],
@@ -127,6 +130,7 @@ class damaio_module
 			'DAMAIO_FOOTER_WIDTH'		=> $config['damaio_footer_width'],
 			'DAMAIO_PASSWORD_SHOW'		=> $config['damaio_password_show'],
 			'DAMAIO_MAIN_WIDTH'			=> $config['damaio_main_width'],
+			'DAMAIO_STICKYNAV'			=> $config['damaio_stickynav'],
 			'DAMAIO_DEVIANTART'			=> $config['damaio_icon_deviantart'],
 			'DAMAIO_FACEBOOK'			=> $config['damaio_icon_facebook'],
 			'DAMAIO_FLICKR'				=> $config['damaio_icon_flickr'],
