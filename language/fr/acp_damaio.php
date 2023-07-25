@@ -34,6 +34,8 @@ if (empty($lang) || !is_array($lang))
 // ’ « » “ ” …
 //
 $lang = array_merge($lang, [
+	'ACP_DAMAIO_ENABLE'					=> 'Activer l’extension',
+	'ACP_DAMAIO_ENABLE_EXPLAIN'			=> 'Si désactivée, seuls les membres du groupe « Administrateurs » verront les modifications, vous permettant ainsi de configurer le style sans perturber les utilisateurs.',
 	'ACP_DAMAIO_HEADING'				=> 'Configuration du style damaïo',
 	'ACP_DAMAIO_PREVIEW'				=> 'Aperçu des modifications',
 	'ACP_DAMAIO_PREVIEW_EXPLAIN'		=> 'Cliquez sur le bouton pour afficher l’aperçu des modifications <b>validées</b>.',
@@ -55,6 +57,8 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_LAYOUT'					=> 'Mise en page',
 	'ACP_DAMAIO_MODAL_LOGIN'			=> 'Fenêtre modale de connexion',
 	'ACP_DAMAIO_MODAL_LOGIN_EXPLAIN'	=> 'Permet d’afficher le formulaire de connexion dans une fenêtre modale.',
+	'ACP_DAMAIO_STICKYNAV'				=> 'Barre de navigation collante',
+	'ACP_DAMAIO_STICKYNAV_EXPLAIN'		=> 'Permet de conserver la barre de navigation supérieure en haut de la fenêtre lors du scroll.',
 	'ACP_DAMAIO_HEADER_WIDTH'			=> 'Afficher l’en-tête en pleine largeur',
 	'ACP_DAMAIO_FOOTER_WIDTH'			=> 'Afficher le pied de page en pleine largeur',
 	'ACP_DAMAIO_PASSWORD_SHOW'			=> 'Affichage du mot de passe',
@@ -82,7 +86,7 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_FEED'					=> 'Icône du flux',
 	'ACP_DAMAIO_FEED_EXPLAIN'			=> 'L’affichage de cette icône nécessite que les flux soient activés dans les « <a href="%1$s">Paramètres des flux</a> ».',
 	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'Le style a été installé mais il est actuellement désactivé. Néanmoins, vous pouvez gérer les paramètres de configuration et visualiser l’aperçu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page de gestion des styles si vous souhaitez l’activer.',
-	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le fichier de configuration du style n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>. Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page d’installation des styles.<br><a href="%2$s">Cliquez ici</a> pour accéder à la page de gestion des styles.',
+	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le style n’est pas installé ou son fichier de configuration n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>.<br>Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page d’installation des styles.<br><a href="%2$s">Cliquez ici</a> pour accéder à la page de gestion des styles.',
 	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'La version <b>%1$s</b> du style damaïo que vous utilisez est incompatible avec cette extension, qui requiert une version du style supérieure ou égale à <b>%2$s</b>.<br>Veuillez télécharger une version compatible depuis <a href="%3$s" target="_blank" title="S’ouvre dans un nouvel onglet">cette page</a>.',
 	'ACP_DAMAIO_SAVE'					=> 'Configuration du style damaïo sauvegardée.',
 ]);
