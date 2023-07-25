@@ -17,6 +17,7 @@ class damaio_install extends \phpbb\db\migration\migration
 	{
 		// Add config
 		return [
+			['config.add', ['damaio_enable', 0]],
 			['config.add', ['damaio_logo_path', '']],
 			['config.add', ['damaio_logo_width', '']],
 			['config.add', ['damaio_logo_height', '']],
@@ -29,6 +30,7 @@ class damaio_install extends \phpbb\db\migration\migration
 			['config.add', ['damaio_footer_width', 0]],
 			['config.add', ['damaio_password_show', 1]],
 			['config.add', ['damaio_main_width', '']],
+			['config.add', ['damaio_stickynav', 0]],
 			['config.add', ['damaio_icon_deviantart', '']],
 			['config.add', ['damaio_icon_facebook', '']],
 			['config.add', ['damaio_icon_flickr', '']],
