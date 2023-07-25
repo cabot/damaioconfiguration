@@ -34,10 +34,6 @@ if (empty($lang) || !is_array($lang))
 // ’ « » “ ” …
 //
 $lang = array_merge($lang, [
-	'DAMAIO_SWITCH_THEME_TITLE'		=> 'Toggle light/dark theme',
-	'DAMAIO_MAINCOLOR1_TITLE'		=> 'Color of main blocks and buttons',
-	'DAMAIO_MAINCOLOR2_TITLE'		=> 'Color of links on hover',
-	'DAMAIO_MAINCOLOR3_TITLE'		=> 'Color of buttons on hover',
 	'DAMAIO_EXT_DEVIANTART_NAME'	=> 'DeviantArt',
 	'DAMAIO_EXT_FACEBOOK_NAME'		=> 'Facebook',
 	'DAMAIO_EXT_FLICKR_NAME'		=> 'Flickr',
@@ -54,4 +50,9 @@ $lang = array_merge($lang, [
 	'DAMAIO_EXT_TWITTER_NAME'		=> 'Twitter',
 	'DAMAIO_EXT_WHATSAPP_NAME'		=> 'WhatsApp',
 	'DAMAIO_EXT_YOUTUBE_NAME'		=> 'YouTube',
+	'DAMAIO_MAINCOLOR1_TITLE'		=> 'Color of main blocks and buttons',
+	'DAMAIO_MAINCOLOR2_TITLE'		=> 'Color of links on hover',
+	'DAMAIO_MAINCOLOR3_TITLE'		=> 'Color of buttons on hover',
+	'DAMAIO_MODAL_OPEN'				=> 'Opens a modal window',
+	'DAMAIO_SWITCH_THEME_TITLE'		=> 'Toggle light/dark theme',
 ]);
