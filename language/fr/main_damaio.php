@@ -34,10 +34,6 @@ if (empty($lang) || !is_array($lang))
 // ’ « » “ ” …
 //
 $lang = array_merge($lang, [
-	'DAMAIO_SWITCH_THEME_TITLE'		=> 'Basculer entre le thème clair et le thème sombre',
-	'DAMAIO_MAINCOLOR1_TITLE'		=> 'Couleur des blocs principaux et des boutons',
-	'DAMAIO_MAINCOLOR2_TITLE'		=> 'Couleur des liens au survol',
-	'DAMAIO_MAINCOLOR3_TITLE'		=> 'Couleur des boutons au survol',
 	'DAMAIO_EXT_DEVIANTART_NAME'	=> 'DeviantArt',
 	'DAMAIO_EXT_FACEBOOK_NAME'		=> 'Facebook',
 	'DAMAIO_EXT_FLICKR_NAME'		=> 'Flickr',
@@ -54,4 +50,9 @@ $lang = array_merge($lang, [
 	'DAMAIO_EXT_TWITTER_NAME'		=> 'Twitter',
 	'DAMAIO_EXT_WHATSAPP_NAME'		=> 'WhatsApp',
 	'DAMAIO_EXT_YOUTUBE_NAME'		=> 'YouTube',
+	'DAMAIO_MAINCOLOR1_TITLE'		=> 'Couleur des blocs principaux et des boutons',
+	'DAMAIO_MAINCOLOR2_TITLE'		=> 'Couleur des liens au survol',
+	'DAMAIO_MAINCOLOR3_TITLE'		=> 'Couleur des boutons au survol',
+	'DAMAIO_MODAL_OPEN'				=> 'Ouvre une fenêtre modale',
+	'DAMAIO_SWITCH_THEME_TITLE'		=> 'Basculer entre le thème clair et le thème sombre',
 ]);
