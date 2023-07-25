@@ -1,5 +1,5 @@
 # damaioconfiguration
-phpBB extension to configure the damaïo style without having to modify the files.
+phpBB extension to configure [damaïo](https://github.com/cabot/damaio) style without having to modify the files.
 
 ## Minimum Requirements
 * phpBB 3.3.11
