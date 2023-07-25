@@ -34,6 +34,8 @@ if (empty($lang) || !is_array($lang))
 // ’ « » “ ” …
 //
 $lang = array_merge($lang, [
+	'ACP_DAMAIO_ENABLE'					=> 'Enable extension',
+	'ACP_DAMAIO_ENABLE_EXPLAIN'			=> 'If disabled, only members of the "Administrators" group will see the changes, allowing you to configure the style without disturbing users.',
 	'ACP_DAMAIO_HEADING'				=> 'Damaïo style configuration',
 	'ACP_DAMAIO_PREVIEW'				=> 'Preview of changes',
 	'ACP_DAMAIO_PREVIEW_EXPLAIN'		=> 'Click the button to display the preview of <b>validated</b> changes.',
@@ -55,6 +57,8 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_LAYOUT'					=> 'Layout',
 	'ACP_DAMAIO_MODAL_LOGIN'			=> 'Modal login window',
 	'ACP_DAMAIO_MODAL_LOGIN_EXPLAIN'	=> 'Allows displaying the login form in a modal window.',
+	'ACP_DAMAIO_STICKYNAV'				=> 'Sticky navbar',
+	'ACP_DAMAIO_STICKYNAV_EXPLAIN'		=> 'Keeps the top navbar at the top of the window when scrolling.',
 	'ACP_DAMAIO_HEADER_WIDTH'			=> 'Display header in full width',
 	'ACP_DAMAIO_FOOTER_WIDTH'			=> 'Display footer in full width',
 	'ACP_DAMAIO_PASSWORD_SHOW'			=> 'Password display',
@@ -82,7 +86,7 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_FEED'					=> 'Feed icon',
 	'ACP_DAMAIO_FEED_EXPLAIN'			=> 'Displaying this icon requires that feeds are enabled in the "<a href="%1$s">Feeds settings</a>".',
 	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'The style has been installed but is currently disabled. However, you can manage the configuration settings and visualize the preview.<br>Click <a href="%1$s">here</a> to access the Styles Management page if you want to activate it.',
-	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'The style configuration file was not found in the <code>styles/damaio/</code> directory. Please ensure that the style is installed in the expected directory. <br>Click <a href="%1$s">here</a> to access the Styles Installation page.<br>Click <a href="%1$s">here</a> to access the Styles Management page.',
+	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'The style is not installed or its configuration file has not been found in the <code>styles/damaio/</code> directory.<br>Please ensure that the style is installed in the expected directory.<br>Click <a href="%1$s">here</a> to access the Styles Installation page.<br>Click <a href="%1$s">here</a> to access the Styles Management page.',
 	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'The version <b>%1$s</b> of the damaïo style you’re using is incompatible with this extension, which requires a style version greater than or equal to <b>%2$s</b>.<br>Please download a compatible version from <a href="%3$s" target="_blank" title="Open’s in new tab">this page</a>.',
 	'ACP_DAMAIO_SAVE'					=> 'Damaïo style configuration saved.',
 ]);
