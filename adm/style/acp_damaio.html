@@ -171,7 +171,7 @@
 		{% macro social(label, name, value) %}
 		<dl>
 			<dt>
-				<label for="{{ name }}">{{ label }}{{ lang('COLON') }}</label>
+				<label for="{{ name }}">{{ label ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
 				<input id="{{ name }}" class="damaio-footer-icon" name="{{ name }}" value="{{ value|e }}" type="url" size="50">
