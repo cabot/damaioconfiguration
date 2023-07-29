@@ -77,20 +77,20 @@ class damaio_module
 				trigger_error('FORM_INVALID');
 			}
 
-			$config->set('damaio_enable', $request->variable('damaio_enable', 0));
+			$config->set('damaio_enable', $request->variable('damaio_enable', false));
 			$config->set('damaio_logo_path', $request->variable('damaio_logo_path', ''));
 			$config->set('damaio_logo_width', $request->variable('damaio_logo_width', ''));
 			$config->set('damaio_logo_height', $request->variable('damaio_logo_height', ''));
-			$config->set('damaio_color_picker', $request->variable('damaio_color_picker', 1));
+			$config->set('damaio_color_picker', $request->variable('damaio_color_picker', true));
 			$config->set('damaio_maincolor1', $request->variable('damaio_maincolor1', ''));
 			$config->set('damaio_maincolor2', $request->variable('damaio_maincolor2', ''));
 			$config->set('damaio_maincolor3', $request->variable('damaio_maincolor3', ''));
-			$config->set('damaio_modal_login', $request->variable('damaio_modal_login', 1));
-			$config->set('damaio_header_width', $request->variable('damaio_header_width', 1));
-			$config->set('damaio_footer_width', $request->variable('damaio_footer_width', 1));
-			$config->set('damaio_password_show', $request->variable('damaio_password_show', 1));
+			$config->set('damaio_modal_login', $request->variable('damaio_modal_login', true));
+			$config->set('damaio_header_width', $request->variable('damaio_header_width', true));
+			$config->set('damaio_footer_width', $request->variable('damaio_footer_width', false));
+			$config->set('damaio_password_show', $request->variable('damaio_password_show', true));
 			$config->set('damaio_main_width', $request->variable('damaio_main_width', ''));
-			$config->set('damaio_stickynav', $request->variable('damaio_stickynav', 0));
+			$config->set('damaio_stickynav', $request->variable('damaio_stickynav', false));
 			$config->set('damaio_icon_deviantart', $request->variable('damaio_icon_deviantart', ''));
 			$config->set('damaio_icon_facebook', $request->variable('damaio_icon_facebook', ''));
 			$config->set('damaio_icon_flickr', $request->variable('damaio_icon_flickr', ''));
@@ -107,7 +107,7 @@ class damaio_module
 			$config->set('damaio_icon_twitter', $request->variable('damaio_icon_twitter', ''));
 			$config->set('damaio_icon_whatsapp', $request->variable('damaio_icon_whatsapp', ''));
 			$config->set('damaio_icon_youtube', $request->variable('damaio_icon_youtube', ''));
-			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', 0));
+			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', false));
 
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;
