@@ -84,8 +84,8 @@
 				<span>{{ lang('ACP_DAMAIO_MODAL_LOGIN_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input id="damaio_modal_login" class="radio" name="damaio_modal_login" type="radio" value="1"{% if DAMAIO_MODAL_LOGIN eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_modal_login" type="radio" value="0"{% if DAMAIO_MODAL_LOGIN eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_modal_login" class="radio" name="damaio_modal_login" type="radio" value="1"{% if DAMAIO_MODAL_LOGIN %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_modal_login" type="radio" value="0"{% if not DAMAIO_MODAL_LOGIN %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -103,8 +103,8 @@
 				<label for="damaio_header_width">{{ lang('ACP_DAMAIO_HEADER_WIDTH') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input id="damaio_header_width" class="radio" name="damaio_header_width" type="radio" value="1"{% if DAMAIO_HEADER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_header_width" type="radio" value="0"{% if DAMAIO_HEADER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_header_width" class="radio" name="damaio_header_width" type="radio" value="1"{% if DAMAIO_HEADER_WIDTH %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_header_width" type="radio" value="0"{% if not DAMAIO_HEADER_WIDTH %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -112,8 +112,8 @@
 				<label for="damaio_footer_width">{{ lang('ACP_DAMAIO_FOOTER_WIDTH') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input id="damaio_footer_width" class="radio" name="damaio_footer_width" type="radio" value="1"{% if DAMAIO_FOOTER_WIDTH eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_footer_width" type="radio" value="0"{% if DAMAIO_FOOTER_WIDTH eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_footer_width" class="radio" name="damaio_footer_width" type="radio" value="1"{% if DAMAIO_FOOTER_WIDTH %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_footer_width" type="radio" value="0"{% if not DAMAIO_FOOTER_WIDTH %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -122,8 +122,8 @@
 				<span>{{ lang('ACP_DAMAIO_PASSWORD_SHOW_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input id="damaio_password_show" class="radio" name="damaio_password_show" type="radio" value="1"{% if DAMAIO_PASSWORD_SHOW eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_password_show" type="radio" value="0"{% if DAMAIO_PASSWORD_SHOW eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_password_show" class="radio" name="damaio_password_show" type="radio" value="1"{% if DAMAIO_PASSWORD_SHOW %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_password_show" type="radio" value="0"{% if not DAMAIO_PASSWORD_SHOW %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -160,8 +160,8 @@
 				<span>{{ lang('ACP_DAMAIO_COLOR_PICKER_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input id="damaio_color_picker" class="radio" name="damaio_color_picker" type="radio" value="1"{% if DAMAIO_COLOR_PICKER eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_color_picker" type="radio" value="0"{% if DAMAIO_COLOR_PICKER eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_color_picker" class="radio" name="damaio_color_picker" type="radio" value="1"{% if DAMAIO_COLOR_PICKER %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_color_picker" type="radio" value="0"{% if not DAMAIO_COLOR_PICKER %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 	</fieldset>
@@ -201,8 +201,8 @@
 				<span>{{ DAMAIO_CHECK_FEED }}</span>
 			</dt>
 			<dd>
-				<input id="damaio_icon_feed" class="radio" name="damaio_icon_feed" type="radio" value="1"{% if DAMAIO_FEED eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input class="radio" name="damaio_icon_feed" type="radio" value="0"{% if DAMAIO_FEED eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input id="damaio_icon_feed" class="radio" name="damaio_icon_feed" type="radio" value="1"{% if DAMAIO_FEED %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input class="radio" name="damaio_icon_feed" type="radio" value="0"{% if not DAMAIO_FEED %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 	</fieldset>
