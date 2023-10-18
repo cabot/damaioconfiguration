@@ -12,6 +12,7 @@ namespace cabot\damaioconfiguration\event;
 
 use phpbb\template\template;
 use phpbb\config\config;
+use phpbb\config\db_text;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -23,6 +24,9 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\config\db_text */
+	protected $config_text;
+
 	/** @var \phpbb\template\template */
 	protected $template;
 
@@ -33,9 +37,10 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\template\template			$template
 	*/
 
-	public function __construct(config $config, template $template)
+	public function __construct(config $config, db_text $config_text, template $template)
 	{
 		$this->config = $config;
+		$this->config_text = $config_text;
 		$this->template = $template;
 	}
 
@@ -57,8 +62,9 @@ class listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function damaioconfiguration($event)
+	public function damaioconfiguration()
 	{
+		$damaiocustomcss = $this->config_text->get('damaio_custom_css');
 		$this->template->assign_vars([
 			'DAMAIO_EXT_ENABLE'			=> $this->config['damaio_enable'],
 			'DAMAIO_EXT_LOGO_URL'		=> $this->config['damaio_logo_path'],
@@ -91,6 +97,7 @@ class listener implements EventSubscriberInterface
 			'DAMAIO_EXT_WHATSAPP'		=> $this->config['damaio_icon_whatsapp'],
 			'DAMAIO_EXT_YOUTUBE'		=> $this->config['damaio_icon_youtube'],
 			'DAMAIO_EXT_FEED'			=> $this->config['damaio_icon_feed'],
+			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
 		]);
 	}
 }

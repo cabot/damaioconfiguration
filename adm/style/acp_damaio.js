@@ -1,4 +1,5 @@
 $(function () {
+	// Style preview in a modal iframe
 	$('#damaio_iframe_preview').on('click', function (e) {
 		e.preventDefault();
 

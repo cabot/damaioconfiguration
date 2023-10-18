@@ -48,8 +48,8 @@ class damaio_install extends \phpbb\db\migration\migration
 			['config.add', ['damaio_icon_whatsapp', '']],
 			['config.add', ['damaio_icon_youtube', '']],
 			['config.add', ['damaio_icon_feed', 0]],
-			['config.add', ['damaio_version_ext', '1.0.0']],
 			['config.add', ['damaio_style_version_min', '1.0.8']],
+			['config_text.add', ['damaio_custom_css', '']],
 
 			// Add ACP modules
 			['module.add', ['acp', 'ACP_CAT_DOT_MODS', 'ACP_DAMAIO_MODULE_TITLE']],

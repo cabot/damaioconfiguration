@@ -1,6 +1,6 @@
+{% INCLUDE 'overall_header.html' %}
 {% INCLUDECSS '@cabot_damaioconfiguration/acp_damaio.css' %}
 {% INCLUDEJS '@cabot_damaioconfiguration/acp_damaio.js' %}
-{% INCLUDE 'overall_header.html' %}
 <h1>{{ lang('ACP_DAMAIO_HEADING') }}</h1>
 
 {% if DAMAIO_STYLE_ID %}
@@ -171,30 +171,30 @@
 		{% macro social(label, name, value) %}
 		<dl>
 			<dt>
-				<label for="{{ name }}">{{ label ~ lang('COLON') }}</label>
+				<label for="damaio_icon_{{ name }}">{{ label ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input id="{{ name }}" class="damaio-footer-icon" name="{{ name }}" value="{{ value|e }}" type="url" size="50">
+				<input id="damaio_icon_{{ name }}" class="damaio-footer-icon" name="damaio_icon_{{ name }}" value="{{ value|e }}" type="url" size="50">
 			</dd>
 		</dl>
 		{% endmacro %}
 		{% import _self as definitionlist %}
-		{{ definitionlist.social(lang('ACP_DAMAIO_DEVIANTART'), "damaio_icon_deviantart", DAMAIO_DEVIANTART) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_FACEBOOK'), "damaio_icon_facebook", DAMAIO_FACEBOOK) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_FLICKR'), "damaio_icon_flickr", DAMAIO_FLICKR) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_GITHUB'), "damaio_icon_github", DAMAIO_GITHUB) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_INSTAGRAM'), "damaio_icon_instagram", DAMAIO_INSTAGRAM) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_LINKEDIN'), "damaio_icon_linkedin", DAMAIO_LINKEDIN) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_PINTEREST'), "damaio_icon_pinterest", DAMAIO_PINTEREST) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_REDDIT'), "damaio_icon_reddit", DAMAIO_REDDIT) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_SKYPE'), "damaio_icon_skype", DAMAIO_SKYPE) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_SNAPCHAT'), "damaio_icon_snapchat", DAMAIO_SNAPCHAT) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_SOUNDCLOUD'), "damaio_icon_soundcloud", DAMAIO_SOUNDCLOUD) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_STEAM'), "damaio_icon_steam", DAMAIO_STEAM) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_TUMBLR'), "damaio_icon_tumblr", DAMAIO_TUMBLR) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_TWITTER'), "damaio_icon_twitter", DAMAIO_TWITTER) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_WHATSAPP'), "damaio_icon_whatsapp", DAMAIO_WHATSAPP) }}
-		{{ definitionlist.social(lang('ACP_DAMAIO_YOUTUBE'), "damaio_icon_youtube", DAMAIO_YOUTUBE) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_DEVIANTART'), "deviantart", DAMAIO_DEVIANTART) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_FACEBOOK'), "facebook", DAMAIO_FACEBOOK) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_FLICKR'), "flickr", DAMAIO_FLICKR) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_GITHUB'), "github", DAMAIO_GITHUB) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_INSTAGRAM'), "instagram", DAMAIO_INSTAGRAM) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_LINKEDIN'), "linkedin", DAMAIO_LINKEDIN) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_PINTEREST'), "pinterest", DAMAIO_PINTEREST) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_REDDIT'), "reddit", DAMAIO_REDDIT) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SKYPE'), "skype", DAMAIO_SKYPE) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SNAPCHAT'), "snapchat", DAMAIO_SNAPCHAT) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_SOUNDCLOUD'), "soundcloud", DAMAIO_SOUNDCLOUD) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_STEAM'), "steam", DAMAIO_STEAM) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_TUMBLR'), "tumblr", DAMAIO_TUMBLR) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_TWITTER'), "twitter", DAMAIO_TWITTER) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_WHATSAPP'), "whatsapp", DAMAIO_WHATSAPP) }}
+		{{ definitionlist.social(lang('ACP_DAMAIO_YOUTUBE'), "youtube", DAMAIO_YOUTUBE) }}
 		<dl>
 			<dt>
 				<label for="damaio_icon_feed">{{ lang('ACP_DAMAIO_FEED') ~ lang('COLON') }}</label><br>
@@ -203,6 +203,18 @@
 			<dd>
 				<input id="damaio_icon_feed" class="radio" name="damaio_icon_feed" type="radio" value="1"{% if DAMAIO_FEED %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
 				<input class="radio" name="damaio_icon_feed" type="radio" value="0"{% if not DAMAIO_FEED %} checked="checked"{% endif %}> {{ lang('NO') }}
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DAMAIO_ADVANCED_CUSTOM') }}</legend>
+		<dl>
+			<dt>
+				<label for="damaio_custom_css">{{ lang('ACP_DAMAIO_CUSTOM_CSS') }}</label><br>
+				<span>{{ lang('ACP_DAMAIO_CUSTOM_CSS_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<textarea class="full" id="damaio_custom_css" name="damaio_custom_css" rows="10" cols="60">{{ DAMAIO_CUSTOM_CSS }}</textarea>
 			</dd>
 		</dl>
 	</fieldset>

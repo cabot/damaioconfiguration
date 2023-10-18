@@ -3,6 +3,7 @@ services:
         class: cabot\damaioconfiguration\event\listener
         arguments:
         - '@config'
+        - '@config_text'
         - '@template'
         tags:
             - { name: event.listener }

@@ -6,7 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 
 if (!defined('IN_PHPBB'))
@@ -41,7 +41,7 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_PREVIEW_EXPLAIN'		=> 'Cliquez sur le bouton pour afficher l’aperçu des modifications <b>validées</b>.',
 	'ACP_DAMAIO_LOGO'					=> 'Logo',
 	'ACP_DAMAIO_LOGO_PATH'				=> 'Emplacement du logo',
-	'ACP_DAMAIO_LOGO_PATH_EXPLAIN'		=> 'Saisissez l’URL complète (par ex : <code>https://adresse.com/nom_du_logo.jpg</code>) ou le chemin relatif à la racine du forum (par ex. <code>images/nom_du_logo.png</code>).<br>Laissez le champ vide pour utiliser le logo d’origine, auquel cas les dimensions saisies ci-dessous n’auront aucun effet.',
+	'ACP_DAMAIO_LOGO_PATH_EXPLAIN'		=> 'Saisissez l’URL complète (p. ex. <code>https://adresse.com/nom_du_logo.jpg</code>) ou le chemin relatif à la racine du forum (p. ex. <code>images/nom_du_logo.png</code>).<br>Laissez le champ vide pour utiliser le logo d’origine, auquel cas les dimensions saisies ci-dessous n’auront aucun effet.',
 	'ACP_DAMAIO_LOGO_WIDTH'				=> 'Largeur du logo',
 	'ACP_DAMAIO_LOGO_HEIGHT'			=> 'Hauteur du logo',
 	'ACP_DAMAIO_COLORS'					=> 'Couleurs',
@@ -57,8 +57,8 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_LAYOUT'					=> 'Mise en page',
 	'ACP_DAMAIO_MODAL_LOGIN'			=> 'Fenêtre modale de connexion',
 	'ACP_DAMAIO_MODAL_LOGIN_EXPLAIN'	=> 'Permet d’afficher le formulaire de connexion dans une fenêtre modale.',
-	'ACP_DAMAIO_STICKYNAV'				=> 'Barre de navigation collante',
-	'ACP_DAMAIO_STICKYNAV_EXPLAIN'		=> 'Permet de conserver la barre de navigation supérieure en haut de la fenêtre lors du scroll.',
+	'ACP_DAMAIO_STICKYNAV'				=> 'Barre de menu collante',
+	'ACP_DAMAIO_STICKYNAV_EXPLAIN'		=> 'Permet de conserver la barre du menu principal visible lors du scroll.',
 	'ACP_DAMAIO_HEADER_WIDTH'			=> 'Afficher l’en-tête en pleine largeur',
 	'ACP_DAMAIO_FOOTER_WIDTH'			=> 'Afficher le pied de page en pleine largeur',
 	'ACP_DAMAIO_PASSWORD_SHOW'			=> 'Affichage du mot de passe',
@@ -86,7 +86,10 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_FEED'					=> 'Icône du flux',
 	'ACP_DAMAIO_FEED_EXPLAIN'			=> 'L’affichage de cette icône nécessite que les flux soient activés dans les « <a href="%1$s">Paramètres des flux</a> ».',
 	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'Le style a été installé mais il est actuellement désactivé. Néanmoins, vous pouvez gérer les paramètres de configuration et visualiser l’aperçu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page de gestion des styles si vous souhaitez l’activer.',
-	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le style n’est pas installé ou son fichier de configuration n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>.<br>Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page d’installation des styles.<br><a href="%2$s">Cliquez ici</a> pour accéder à la page de gestion des styles.',
-	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'La version <b>%1$s</b> du style damaïo que vous utilisez est incompatible avec cette extension, qui requiert une version du style supérieure ou égale à <b>%2$s</b>.<br>Veuillez télécharger une version compatible depuis <a href="%3$s" target="_blank" title="S’ouvre dans un nouvel onglet">cette page</a>.',
+	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le style n’est pas installé ou son fichier de configuration n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>.<br>Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><br><a href="%1$s">Cliquez ici</a> pour accéder à la page d’installation des styles.<br><a href="%2$s">Cliquez ici</a> pour accéder à la page de gestion des styles.<br>Téléchargez le style en version supérieure ou égale à <b>%3$s</b> depuis la <a href="%4$s" title="S’ouvre dans un nouvel onglet" target="_blank">bbase de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%5$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
+	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'La version <b>%1$s</b> du style damaïo que vous utilisez est incompatible avec cette extension, qui requiert une version du style supérieure ou égale à <b>%2$s</b>.<br>Veuillez télécharger une version compatible depuis la <a href="%3$s" target="_blank" title="S’ouvre dans un nouvel onglet">base de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%4$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
 	'ACP_DAMAIO_SAVE'					=> 'Configuration du style damaïo sauvegardée.',
+	'ACP_DAMAIO_ADVANCED_CUSTOM'		=> 'Personnalisation avancée',
+	'ACP_DAMAIO_CUSTOM_CSS'				=> 'Règles CSS',
+	'ACP_DAMAIO_CUSTOM_CSS_EXPLAIN'		=> 'Ajoutez ici vos <a href="https://www.w3schools.com/css/css_syntax.asp" title="S’ouvre dans un nouvel onglet" target="_blank">règles CSS <i class="fa fa-external-link" aria-hidden="true"></i></a> personnalisées.',
 ]);
