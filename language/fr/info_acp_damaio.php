@@ -6,8 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
-
+ */
 
 if (!defined('IN_PHPBB'))
 {
@@ -35,5 +34,6 @@ if (empty($lang) || !is_array($lang))
 //
 $lang = array_merge($lang, [
 	'ACP_DAMAIO_MODULE_TITLE'		=> 'Style damaïo',
-	'ACP_DAMAIO_MODULE_CONFIG'	=> 'Configuration du style',
+	'ACP_DAMAIO_MODULE_CONFIG'		=> 'Configuration du style',
+	'ACP_DAMAIO_UPDATED_LOG'		=> '<strong>Configuration du style damaïo mise à jour</strong>',
 ]);

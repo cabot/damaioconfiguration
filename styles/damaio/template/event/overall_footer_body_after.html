@@ -1,11 +1,16 @@
+{% if DAMAIO_EXT_ENABLE or U_ACP %}
 <script>
-	$('#switch-theme').attr('title', "{{ lang('DAMAIO_SWITCH_THEME_TITLE')|e ('js') }}");
-	{% if definition.COLOR_PICKER eq 1 %}
 	$(function () {
+		$('#switch-theme').attr('title', "{{ lang('DAMAIO_SWITCH_THEME_TITLE')|e ('js') }}");
+		{% if definition.COLOR_PICKER %}
 		const colorExplain = ["{{ lang('DAMAIO_MAINCOLOR1_TITLE')|e ('js') }}", "{{ lang('DAMAIO_MAINCOLOR2_TITLE')|e ('js') }}", "{{ lang('DAMAIO_MAINCOLOR3_TITLE')|e ('js') }}"];
 		$('.sp-replacer').each(function (i) {
 			$(this).attr('title', colorExplain[i]);
 		});
+		{% endif %}
+		{% if definition.MODAL_LOGIN and not S_USER_LOGGED_IN %}
+		$('#modal-login-trigger').attr('title', "{{ lang('DAMAIO_MODAL_OPEN')|e ('js') }}")
+		{% endif %}
 	});
-	{% endif %}
 </script>
+{% endif %}

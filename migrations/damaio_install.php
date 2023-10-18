@@ -17,6 +17,7 @@ class damaio_install extends \phpbb\db\migration\migration
 	{
 		// Add config
 		return [
+			['config.add', ['damaio_enable', 0]],
 			['config.add', ['damaio_logo_path', '']],
 			['config.add', ['damaio_logo_width', '']],
 			['config.add', ['damaio_logo_height', '']],
@@ -29,6 +30,7 @@ class damaio_install extends \phpbb\db\migration\migration
 			['config.add', ['damaio_footer_width', 0]],
 			['config.add', ['damaio_password_show', 1]],
 			['config.add', ['damaio_main_width', '']],
+			['config.add', ['damaio_stickynav', 0]],
 			['config.add', ['damaio_icon_deviantart', '']],
 			['config.add', ['damaio_icon_facebook', '']],
 			['config.add', ['damaio_icon_flickr', '']],
@@ -46,8 +48,8 @@ class damaio_install extends \phpbb\db\migration\migration
 			['config.add', ['damaio_icon_whatsapp', '']],
 			['config.add', ['damaio_icon_youtube', '']],
 			['config.add', ['damaio_icon_feed', 0]],
-			['config.add', ['damaio_version_ext', '1.0.0']],
 			['config.add', ['damaio_style_version_min', '1.0.8']],
+			['config_text.add', ['damaio_custom_css', '']],
 
 			// Add ACP modules
 			['module.add', ['acp', 'ACP_CAT_DOT_MODS', 'ACP_DAMAIO_MODULE_TITLE']],

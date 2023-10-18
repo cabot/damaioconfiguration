@@ -26,10 +26,13 @@ class damaio_module
 	/** @var string */
 	public $u_action;
 
+	/** @var string */
 	protected $styles_path;
+
+	/** @var string */
 	protected $styles_path_absolute = 'styles';
 
-	public function main($id, $mode)
+	public function main()
 	{
 		global $phpbb_container;
 
@@ -41,6 +44,9 @@ class damaio_module
 
 		/** @type \phpbb\config\config $config Config object */
 		$config = $phpbb_container->get('config');
+
+		/** @type \phpbb\config\db_text $config_text Config Text object */
+		$config_text = $phpbb_container->get('config_text');
 
 		/** @type \phpbb\template\template $template Template object */
 		$template = $phpbb_container->get('template');
@@ -67,6 +73,10 @@ class damaio_module
 		$language->add_lang('acp_damaio', 'cabot/damaioconfiguration');
 		$this->page_title = $language->lang('ACP_DAMAIO_MODULE_TITLE');
 
+		$damaio_version_min = $config['damaio_style_version_min'];
+		$damaio_phpbb_url = 'https://www.phpbb.com/customise/db/style/dama%C3%AFo/';
+		$damaio_github_url = 'https://github.com/cabot/damaio';
+
 		add_form_key('damaioconfiguration/acp_damaio');
 
 		$submit = $request->is_set_post('submit');
@@ -77,18 +87,20 @@ class damaio_module
 				trigger_error('FORM_INVALID');
 			}
 
+			$config->set('damaio_enable', $request->variable('damaio_enable', false));
 			$config->set('damaio_logo_path', $request->variable('damaio_logo_path', ''));
 			$config->set('damaio_logo_width', $request->variable('damaio_logo_width', ''));
 			$config->set('damaio_logo_height', $request->variable('damaio_logo_height', ''));
-			$config->set('damaio_color_picker', $request->variable('damaio_color_picker', 1));
+			$config->set('damaio_color_picker', $request->variable('damaio_color_picker', true));
 			$config->set('damaio_maincolor1', $request->variable('damaio_maincolor1', ''));
 			$config->set('damaio_maincolor2', $request->variable('damaio_maincolor2', ''));
 			$config->set('damaio_maincolor3', $request->variable('damaio_maincolor3', ''));
-			$config->set('damaio_modal_login', $request->variable('damaio_modal_login', 1));
-			$config->set('damaio_header_width', $request->variable('damaio_header_width', 1));
-			$config->set('damaio_footer_width', $request->variable('damaio_footer_width', 1));
-			$config->set('damaio_password_show', $request->variable('damaio_password_show', 1));
+			$config->set('damaio_modal_login', $request->variable('damaio_modal_login', true));
+			$config->set('damaio_header_width', $request->variable('damaio_header_width', true));
+			$config->set('damaio_footer_width', $request->variable('damaio_footer_width', false));
+			$config->set('damaio_password_show', $request->variable('damaio_password_show', true));
 			$config->set('damaio_main_width', $request->variable('damaio_main_width', ''));
+			$config->set('damaio_stickynav', $request->variable('damaio_stickynav', false));
 			$config->set('damaio_icon_deviantart', $request->variable('damaio_icon_deviantart', ''));
 			$config->set('damaio_icon_facebook', $request->variable('damaio_icon_facebook', ''));
 			$config->set('damaio_icon_flickr', $request->variable('damaio_icon_flickr', ''));
@@ -105,16 +117,20 @@ class damaio_module
 			$config->set('damaio_icon_twitter', $request->variable('damaio_icon_twitter', ''));
 			$config->set('damaio_icon_whatsapp', $request->variable('damaio_icon_whatsapp', ''));
 			$config->set('damaio_icon_youtube', $request->variable('damaio_icon_youtube', ''));
-			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', 0));
+			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', false));
+			$config_text->set('damaio_custom_css', utf8_normalize_nfc($request->variable('damaio_custom_css', '', true)));
 
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;
 
-			$phpbb_log->add('admin', $user_id, $user_ip, 'ACP_DAMAIO_SAVE');
+			$phpbb_log->add('admin', $user_id, $user_ip, 'ACP_DAMAIO_UPDATED_LOG');
 			trigger_error($language->lang('ACP_DAMAIO_SAVE') . adm_back_link($this->u_action));
 		}
 
+		$damaiocustomcss = $config_text->get('damaio_custom_css');
+
 		$template->assign_vars([
+			'DAMAIO_ENABLE'				=> $config['damaio_enable'],
 			'DAMAIO_LOGO_PATH'			=> $config['damaio_logo_path'],
 			'DAMAIO_LOGO_WIDTH'			=> $config['damaio_logo_width'],
 			'DAMAIO_LOGO_HEIGHT'		=> $config['damaio_logo_height'],
@@ -127,6 +143,7 @@ class damaio_module
 			'DAMAIO_FOOTER_WIDTH'		=> $config['damaio_footer_width'],
 			'DAMAIO_PASSWORD_SHOW'		=> $config['damaio_password_show'],
 			'DAMAIO_MAIN_WIDTH'			=> $config['damaio_main_width'],
+			'DAMAIO_STICKYNAV'			=> $config['damaio_stickynav'],
 			'DAMAIO_DEVIANTART'			=> $config['damaio_icon_deviantart'],
 			'DAMAIO_FACEBOOK'			=> $config['damaio_icon_facebook'],
 			'DAMAIO_FLICKR'				=> $config['damaio_icon_flickr'],
@@ -144,8 +161,9 @@ class damaio_module
 			'DAMAIO_WHATSAPP'			=> $config['damaio_icon_whatsapp'],
 			'DAMAIO_YOUTUBE'			=> $config['damaio_icon_youtube'],
 			'DAMAIO_FEED'				=> $config['damaio_icon_feed'],
+			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
 			'DAMAIO_CHECK_FEED'			=> sprintf($language->lang('ACP_DAMAIO_FEED_EXPLAIN'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_board&mode=feed')),
-			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=style')),
+			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=style'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url),
 		]);
 
 		$sql = 'SELECT style_id, style_active, style_path
@@ -155,21 +173,20 @@ class damaio_module
 
 		if ($row = $db->sql_fetchrow($result))
 		{
-			// Read style configuration file
 			$style_cfg = $this->read_style_cfg($row['style_path']);
 			$style_current_version = htmlspecialchars($style_cfg['style_version'], ENT_COMPAT);
 
 			$style_version_check = '';
 			$style_version_info = '';
 
-			if (version_compare($style_current_version, $config['damaio_style_version_min']) >= 0)
+			if (version_compare($style_current_version, $damaio_version_min) >= 0)
 			{
 				$style_version_check = true;
 			}
 			else
 			{
 				$style_version_check = false;
-				$style_version_info = sprintf($language->lang('ACP_DAMAIO_STYLE_INCOMPATIBLE'), $style_current_version, $config['damaio_style_version_min'], 'https://www.phpbb.com/customise/db/style/dama%C3%AFo/');
+				$style_version_info = sprintf($language->lang('ACP_DAMAIO_STYLE_INCOMPATIBLE'), $style_current_version, $damaio_version_min, $damaio_phpbb_url, $damaio_github_url);
 			}
 
 			$template->assign_vars([

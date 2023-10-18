@@ -6,7 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 
 if (!defined('IN_PHPBB'))
@@ -31,9 +31,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 $lang = array_merge($lang, [
 	'ACP_DAMAIO_MODULE_TITLE'		=> 'Damaïo style',
-	'ACP_DAMAIO_MODULE_CONFIG'	=> 'Style configuration',
+	'ACP_DAMAIO_MODULE_CONFIG'		=> 'Style configuration',
+	'ACP_DAMAIO_UPDATED_LOG'		=> '<strong>Damaïo style configuration updated</strong>',
 ]);
