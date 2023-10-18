@@ -2,7 +2,7 @@
 phpBB extension to configure the damaïo style without having to modify the files.
 
 ## Minimum Requirements
-* phpBB 3.3.11
+* phpBB 3.3.10
 * PHP 7.1.3
 * [damaïo](https://github.com/cabot/damaio) >= 1.0.8
 
