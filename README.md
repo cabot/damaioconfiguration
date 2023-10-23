@@ -31,6 +31,6 @@ phpBB extension to configure the damaïo style without having to modify the file
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
 ## Screenshot
-![damaio configuration](https://github.com/cabot/damaioconfiguration/assets/6350179/4dbbba80-7acd-4dd3-a1c4-4876b2723d4c)
+![damaio configuration](https://upload.cabotweb.fr/images/2023/10/23/damaio-configuration.png)
 
 © 2023 - cabot
