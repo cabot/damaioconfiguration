@@ -8,7 +8,6 @@
  *
  */
 
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -85,11 +84,11 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_YOUTUBE'				=> 'YouTube',
 	'ACP_DAMAIO_FEED'					=> 'Feed icon',
 	'ACP_DAMAIO_FEED_EXPLAIN'			=> 'Displaying this icon requires that feeds are enabled in the "<a href="%1$s">Feeds settings</a>".',
-	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'The style has been installed but is currently deactivated. However, you can manage the configuration settings and visualize the preview.<br>Click <a href="%1$s">here</a> to access the Styles Management page if you want to activate it.',
-	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'The style is not installed or its configuration file has not been found in the <code>styles/damaio/</code> directory.<br>Please ensure that the style is installed in the expected directory.<br><br>Click <a href="%1$s">here</a> to access the Styles Installation page.<br>Click <a href="%2$s">here</a> to access the Styles Management page.<br>Download the style in version greater than or equal to <b>%3$s</b> from the <a href="%4$s" target="_blank" title="Opens in new tab">phpBB styles database <i class="fa fa-external-link" aria-hidden="true"></i></a> or the <a href="%5$s" title="Opens in new tab" target="_blank">GitHub repository <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
-	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'The version <b>%1$s</b> of the damaïo style you’re using is incompatible with this extension, which requires a style version greater than or equal to <b>%2$s</b>.<br>Please download a compatible version from the <a href="%3$s" target="_blank" title="Opens in new tab">phpBB styles database <i class="fa fa-external-link" aria-hidden="true"></i></a> or the <a href="%4$s" title="Opens in new tab" target="_blank">GitHub repository <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
-	'ACP_DAMAIO_SAVE'					=> 'Damaïo style configuration saved.',
 	'ACP_DAMAIO_ADVANCED_CUSTOM'		=> 'Advanced customisation',
 	'ACP_DAMAIO_CUSTOM_CSS'				=> 'CSS rules',
 	'ACP_DAMAIO_CUSTOM_CSS_EXPLAIN'		=> 'Add here your custom <a href="https://www.w3schools.com/css/css_syntax.asp" title="Opens in new tab" target="_blank">CSS rules <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
+	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'The <b>damaïo</b> style is installed but currently deactivated. However, you can manage the configuration settings and visualize the preview.<br>Click <a href="%1$s">here</a> to access the Styles Management page to activate damaïo.',
+	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'The <b>damaïo</b> style is not installed or its configuration file has not been found in the <code>styles/damaio/</code> directory.<br>Please ensure that the style is installed in the expected directory.<br><br>Download the style in version greater than or equal to <b>%1$s</b> from the <a href="%2$s" target="_blank" title="Opens in new tab">phpBB styles database <i class="fa fa-external-link" aria-hidden="true"></i></a> or the <a href="%3$s" title="Opens in new tab" target="_blank">GitHub repository <i class="fa fa-external-link" aria-hidden="true"></i></a>.<br>Click <a href="%4$s">here</a> to access the Styles Installation page.',
+	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'The version <b>%1$s</b> of the <b>damaïo</b> style is incompatible with this extension.<br>Please download version <b>%2$s</b> or higher from the <a href="%3$s" target="_blank" title="Opens in new tab">phpBB styles database <i class="fa fa-external-link" aria-hidden="true"></i></a> or the <a href="%4$s" title="Opens in new tab" target="_blank">GitHub repository <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
+	'ACP_DAMAIO_SAVE'					=> 'Damaïo style configuration saved.',
 ]);

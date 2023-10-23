@@ -6,7 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 namespace cabot\damaioconfiguration\event;
 
@@ -16,9 +16,9 @@ use phpbb\config\db_text;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
-* Event listener
-*
-*/
+ * Event listener
+ *
+ */
 class listener implements EventSubscriberInterface
 {
 	/** @var \phpbb\config\config */
@@ -31,11 +31,11 @@ class listener implements EventSubscriberInterface
 	protected $template;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\config\config				$config
-	* @param \phpbb\template\template			$template
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\config\config				$config
+	 * @param \phpbb\template\template			$template
+	 */
 
 	public function __construct(config $config, db_text $config_text, template $template)
 	{

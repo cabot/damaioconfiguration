@@ -8,7 +8,6 @@
  *
  */
 
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -85,11 +84,11 @@ $lang = array_merge($lang, [
 	'ACP_DAMAIO_YOUTUBE'				=> 'YouTube',
 	'ACP_DAMAIO_FEED'					=> 'Icône du flux',
 	'ACP_DAMAIO_FEED_EXPLAIN'			=> 'L’affichage de cette icône nécessite que les flux soient activés dans les « <a href="%1$s">Paramètres des flux</a> ».',
-	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'Le style a été installé mais il est actuellement désactivé. Néanmoins, vous pouvez gérer les paramètres de configuration et visualiser l’aperçu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page de gestion des styles si vous souhaitez l’activer.',
-	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le style n’est pas installé ou son fichier de configuration n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>.<br>Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><br><a href="%1$s">Cliquez ici</a> pour accéder à la page d’installation des styles.<br><a href="%2$s">Cliquez ici</a> pour accéder à la page de gestion des styles.<br>Téléchargez le style en version supérieure ou égale à <b>%3$s</b> depuis la <a href="%4$s" title="S’ouvre dans un nouvel onglet" target="_blank">bbase de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%5$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
-	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'La version <b>%1$s</b> du style damaïo que vous utilisez est incompatible avec cette extension, qui requiert une version du style supérieure ou égale à <b>%2$s</b>.<br>Veuillez télécharger une version compatible depuis la <a href="%3$s" target="_blank" title="S’ouvre dans un nouvel onglet">base de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%4$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
-	'ACP_DAMAIO_SAVE'					=> 'Configuration du style damaïo sauvegardée.',
 	'ACP_DAMAIO_ADVANCED_CUSTOM'		=> 'Personnalisation avancée',
 	'ACP_DAMAIO_CUSTOM_CSS'				=> 'Règles CSS',
 	'ACP_DAMAIO_CUSTOM_CSS_EXPLAIN'		=> 'Ajoutez ici vos <a href="https://www.w3schools.com/css/css_syntax.asp" title="S’ouvre dans un nouvel onglet" target="_blank">règles CSS <i class="fa fa-external-link" aria-hidden="true"></i></a> personnalisées.',
+	'ACP_DAMAIO_STYLE_DEACTIVATED'		=> 'Le style <b>damaïo</b> est installé mais actuellement désactivé. Néanmoins, vous pouvez gérer les paramètres de configuration et visualiser l’aperçu.<br><a href="%1$s">Cliquez ici</a> pour accéder à la page de gestion des styles pour activer damaïo.',
+	'ACP_DAMAIO_STYLE_NOT_FOUND'		=> 'Le style <b>damaïo</b> n’est pas installé ou son fichier de configuration n’a pas été trouvé dans le répertoire <code>styles/damaio/</code>.<br>Veuillez vous assurer que le style est installé dans le répertoire attendu.<br><br>Téléchargez le style en version supérieure ou égale à <b>%1$s</b> depuis la <a href="%2$s" title="S’ouvre dans un nouvel onglet" target="_blank">base de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%3$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.<br><a href="%4$s">Cliquez ici</a> pour accéder à la page d’installation des styles.',
+	'ACP_DAMAIO_STYLE_INCOMPATIBLE'		=> 'La version <b>%1$s</b> du style <b>damaïo</b> est incompatible avec cette extension.<br>Veuillez télécharger la version <b>%2$s</b> ou supérieure depuis la <a href="%3$s" target="_blank" title="S’ouvre dans un nouvel onglet">base de données des styles phpBB <i class="fa fa-external-link" aria-hidden="true"></i></a> ou le <a href="%4$s" title="S’ouvre dans un nouvel onglet" target="_blank">dépôt GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>.',
+	'ACP_DAMAIO_SAVE'					=> 'Configuration du style damaïo sauvegardée.',
 ]);

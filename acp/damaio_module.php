@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Damaïo style configuration extension for the phpBB Forum Software package.
@@ -163,7 +162,7 @@ class damaio_module
 			'DAMAIO_FEED'				=> $config['damaio_icon_feed'],
 			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
 			'DAMAIO_CHECK_FEED'			=> sprintf($language->lang('ACP_DAMAIO_FEED_EXPLAIN'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_board&mode=feed')),
-			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=style'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url),
+			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url, append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install')),
 		]);
 
 		$sql = 'SELECT style_id, style_active, style_path
