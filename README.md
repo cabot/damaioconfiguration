@@ -9,7 +9,7 @@ phpBB extension to configure the damaïo style without having to modify the file
 1. Download the latest ready-to-install version [cabot_damaioconfiguration.zip](https://github.com/cabot/damaioconfiguration/releases/latest/download/cabot_damaioconfiguration.zip).
 2. Unzip the downloaded archive and upload the folder it contains into the `ext/` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
-4. Look for `Damaïo configuration` in the list of deactivated extensions, and click on its `Enable` link.
+4. Look for `Damaïo configuration` under the Disabled Extensions list, and click its `Enable` link.
 
 ## Install (advanced)
 1. Download the latest release `Source code`.
