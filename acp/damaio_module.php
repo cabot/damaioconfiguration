@@ -117,7 +117,7 @@ class damaio_module
 			$config->set('damaio_icon_whatsapp', $request->variable('damaio_icon_whatsapp', ''));
 			$config->set('damaio_icon_youtube', $request->variable('damaio_icon_youtube', ''));
 			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', false));
-			$config_text->set('damaio_custom_css', utf8_normalize_nfc($request->variable('damaio_custom_css', '', true)));
+			$config_text->set('damaio_custom_css', htmlspecialchars_decode($request->variable('damaio_custom_css', '', true)));
 
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;

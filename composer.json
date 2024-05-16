@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Extension to configure the damaïo style without having to modify the files.",
     "homepage": "https://github.com/cabot/damaioconfiguration",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "GPL-2.0-only",
     "authors": [
         {
