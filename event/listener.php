@@ -70,8 +70,21 @@ class listener implements EventSubscriberInterface
 
 	public function damaioconfiguration()
 	{
+		$damaio_icons = [
+			'bluesky', 'deviantart', 'discord', 'facebook', 'flickr', 'github',
+			'instagram', 'linkedin', 'mastodon', 'paypal', 'pinterest', 'reddit',
+			'skype', 'snapchat', 'soundcloud', 'steam', 'telegram', 'tiktok',
+			'tumblr', 'twitter', 'vkontakte', 'whatsapp', 'youtube'
+		];
+		$template_icons_vars = [];
+		foreach ($damaio_icons as $icon)
+		{
+			$template_icons_vars['DAMAIO_EXT_' . strtoupper($icon)] = $this->config["damaio_icon_{$icon}"];
+		}
+
 		$damaiocustomcss = $this->config_text->get('damaio_custom_css');
-		$this->template->assign_vars([
+
+		$this->template->assign_vars(array_merge([
 			'DAMAIO_EXT_ENABLE'			=> $this->config['damaio_enable'],
 			'DAMAIO_EXT_LOGO_URL'		=> $this->logo_path_helper->get_logo_path($this->config['damaio_logo_path']),
 			'DAMAIO_EXT_LOGO_WIDTH'		=> $this->config['damaio_logo_width'],
@@ -86,24 +99,8 @@ class listener implements EventSubscriberInterface
 			'DAMAIO_EXT_FOOTER_WIDTH'	=> $this->config['damaio_footer_width'],
 			'DAMAIO_EXT_PASSWORD_SHOW'	=> $this->config['damaio_password_show'],
 			'DAMAIO_EXT_MAIN_WIDTH'		=> $this->config['damaio_main_width'],
-			'DAMAIO_EXT_DEVIANTART'		=> $this->config['damaio_icon_deviantart'],
-			'DAMAIO_EXT_FACEBOOK'		=> $this->config['damaio_icon_facebook'],
-			'DAMAIO_EXT_FLICKR'			=> $this->config['damaio_icon_flickr'],
-			'DAMAIO_EXT_GITHUB'			=> $this->config['damaio_icon_github'],
-			'DAMAIO_EXT_INSTAGRAM'		=> $this->config['damaio_icon_instagram'],
-			'DAMAIO_EXT_LINKEDIN'		=> $this->config['damaio_icon_linkedin'],
-			'DAMAIO_EXT_PINTEREST'		=> $this->config['damaio_icon_pinterest'],
-			'DAMAIO_EXT_REDDIT'			=> $this->config['damaio_icon_reddit'],
-			'DAMAIO_EXT_SKYPE'			=> $this->config['damaio_icon_skype'],
-			'DAMAIO_EXT_SNAPCHAT'		=> $this->config['damaio_icon_snapchat'],
-			'DAMAIO_EXT_SOUNDCLOUD'		=> $this->config['damaio_icon_soundcloud'],
-			'DAMAIO_EXT_STEAM'			=> $this->config['damaio_icon_steam'],
-			'DAMAIO_EXT_TUMBLR'			=> $this->config['damaio_icon_tumblr'],
-			'DAMAIO_EXT_TWITTER'		=> $this->config['damaio_icon_twitter'],
-			'DAMAIO_EXT_WHATSAPP'		=> $this->config['damaio_icon_whatsapp'],
-			'DAMAIO_EXT_YOUTUBE'		=> $this->config['damaio_icon_youtube'],
 			'DAMAIO_EXT_FEED'			=> $this->config['damaio_icon_feed'],
 			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
-		]);
+		], $template_icons_vars));
 	}
 }

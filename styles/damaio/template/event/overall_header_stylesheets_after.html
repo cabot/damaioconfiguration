@@ -1,26 +1,25 @@
 {% if (DAMAIO_EXT_ENABLE or U_ACP) and (DAMAIO_EXT_LOGO_URL or DAMAIO_EXT_MAIN_WIDTH or DAMAIO_EXT_MAINCOLOR1 or DAMAIO_EXT_MAINCOLOR2 or DAMAIO_EXT_MAINCOLOR3 or DAMAIO_CUSTOM_CSS) %}
 <style>
 {% if DAMAIO_EXT_LOGO_URL %}
-	.site_logo {
-		background-image: url("{{ DAMAIO_EXT_LOGO_URL }}");
-		{% if DAMAIO_EXT_LOGO_WIDTH %}width: {{ DAMAIO_EXT_LOGO_WIDTH }};{% endif %}
-		{% if DAMAIO_EXT_LOGO_HEIGHT %}height: {{ DAMAIO_EXT_LOGO_HEIGHT }};{% endif %}
-	}
+.site_logo {
+	background-image: url("{{ DAMAIO_EXT_LOGO_URL }}");
+	{% if DAMAIO_EXT_LOGO_WIDTH %}width: {{ DAMAIO_EXT_LOGO_WIDTH }};{% endif %}
+	{% if DAMAIO_EXT_LOGO_HEIGHT %}height: {{ DAMAIO_EXT_LOGO_HEIGHT }};{% endif %}
+}
 {% endif %}
 {% if DAMAIO_EXT_MAIN_WIDTH %}
-	.main-width,
-	.wrap {
-		max-width: {{ DAMAIO_EXT_MAIN_WIDTH }};
-	}
+.main-width, .wrap { max-width: {{ DAMAIO_EXT_MAIN_WIDTH }}; }
 {% endif %}
 {% if DAMAIO_EXT_MAINCOLOR1 or DAMAIO_EXT_MAINCOLOR2 or DAMAIO_EXT_MAINCOLOR3 %}
-	:root,
-	#getcolors {
-		{% if DAMAIO_EXT_MAINCOLOR1 %}--main-color1: {{ DAMAIO_EXT_MAINCOLOR1 }};{% endif %}
-		{% if DAMAIO_EXT_MAINCOLOR2 %}--main-color2: {{ DAMAIO_EXT_MAINCOLOR2 }};{% endif %}
-		{% if DAMAIO_EXT_MAINCOLOR3 %}--main-color3: {{ DAMAIO_EXT_MAINCOLOR3 }};{% endif %}
-	}
+:root, #getcolors {
+{% for i in 1..3 %}
+	{% set color_var = 'DAMAIO_EXT_MAINCOLOR' ~ i %}
+	{% if attribute(_context, color_var) %}
+	--main-color{{ i }}: {{ attribute(_context, color_var) }};
+	{% endif %}
+{% endfor %}
+}
 {% endif %}
-{% if DAMAIO_CUSTOM_CSS %}{{ DAMAIO_CUSTOM_CSS }}{% endif %}
+{{ DAMAIO_CUSTOM_CSS ? DAMAIO_CUSTOM_CSS }}
 </style>
 {% endif %}
