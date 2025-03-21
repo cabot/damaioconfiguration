@@ -7,9 +7,9 @@ services:
     cabot.damaioconfiguration.listener:
         class: cabot\damaioconfiguration\event\listener
         arguments:
-        - '@config'
-        - '@config_text'
-        - '@template'
-        - '@cabot.damaioconfiguration.logo_path_helper'
+            - '@config'
+            - '@config_text'
+            - '@template'
+            - '@cabot.damaioconfiguration.logo_path_helper'
         tags:
             - { name: event.listener }
