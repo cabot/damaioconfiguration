@@ -76,6 +76,13 @@ class damaio_module
 		$damaio_phpbb_url = 'https://www.phpbb.com/customise/db/style/dama%C3%AFo/';
 		$damaio_github_url = 'https://github.com/cabot/damaio';
 
+		$damaio_icons = [
+			'bluesky', 'deviantart', 'discord', 'facebook', 'flickr', 'github',
+			'instagram', 'linkedin', 'mastodon', 'paypal', 'pinterest', 'reddit',
+			'skype', 'snapchat', 'soundcloud', 'steam', 'telegram', 'tiktok',
+			'tumblr', 'twitter', 'vkontakte', 'whatsapp', 'youtube'
+		];
+
 		add_form_key('damaioconfiguration/acp_damaio');
 
 		$submit = $request->is_set_post('submit');
@@ -100,24 +107,13 @@ class damaio_module
 			$config->set('damaio_password_show', $request->variable('damaio_password_show', true));
 			$config->set('damaio_main_width', $request->variable('damaio_main_width', ''));
 			$config->set('damaio_stickynav', $request->variable('damaio_stickynav', false));
-			$config->set('damaio_icon_deviantart', $request->variable('damaio_icon_deviantart', ''));
-			$config->set('damaio_icon_facebook', $request->variable('damaio_icon_facebook', ''));
-			$config->set('damaio_icon_flickr', $request->variable('damaio_icon_flickr', ''));
-			$config->set('damaio_icon_github', $request->variable('damaio_icon_github', ''));
-			$config->set('damaio_icon_instagram', $request->variable('damaio_icon_instagram', ''));
-			$config->set('damaio_icon_linkedin', $request->variable('damaio_icon_linkedin', ''));
-			$config->set('damaio_icon_pinterest', $request->variable('damaio_icon_pinterest', ''));
-			$config->set('damaio_icon_reddit', $request->variable('damaio_icon_reddit', ''));
-			$config->set('damaio_icon_skype', $request->variable('damaio_icon_skype', ''));
-			$config->set('damaio_icon_snapchat', $request->variable('damaio_icon_snapchat', ''));
-			$config->set('damaio_icon_soundcloud', $request->variable('damaio_icon_soundcloud', ''));
-			$config->set('damaio_icon_steam', $request->variable('damaio_icon_steam', ''));
-			$config->set('damaio_icon_tumblr', $request->variable('damaio_icon_tumblr', ''));
-			$config->set('damaio_icon_twitter', $request->variable('damaio_icon_twitter', ''));
-			$config->set('damaio_icon_whatsapp', $request->variable('damaio_icon_whatsapp', ''));
-			$config->set('damaio_icon_youtube', $request->variable('damaio_icon_youtube', ''));
 			$config->set('damaio_icon_feed', $request->variable('damaio_icon_feed', false));
 			$config_text->set('damaio_custom_css', htmlspecialchars_decode($request->variable('damaio_custom_css', '', true)));
+
+			foreach ($damaio_icons as $icon)
+			{
+				$config->set("damaio_icon_{$icon}", $request->variable("damaio_icon_{$icon}", ''));
+			}
 
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;
@@ -126,9 +122,15 @@ class damaio_module
 			trigger_error($language->lang('ACP_DAMAIO_SAVE') . adm_back_link($this->u_action));
 		}
 
+		$template_icons_vars = [];
+		foreach ($damaio_icons as $icon)
+		{
+			$template_icons_vars['DAMAIO_' . strtoupper($icon)] = $config["damaio_icon_{$icon}"];
+		}
+
 		$damaiocustomcss = $config_text->get('damaio_custom_css');
 
-		$template->assign_vars([
+		$template->assign_vars(array_merge([
 			'DAMAIO_ENABLE'				=> $config['damaio_enable'],
 			'DAMAIO_LOGO_PATH'			=> $config['damaio_logo_path'],
 			'DAMAIO_LOGO_WIDTH'			=> $config['damaio_logo_width'],
@@ -143,27 +145,11 @@ class damaio_module
 			'DAMAIO_PASSWORD_SHOW'		=> $config['damaio_password_show'],
 			'DAMAIO_MAIN_WIDTH'			=> $config['damaio_main_width'],
 			'DAMAIO_STICKYNAV'			=> $config['damaio_stickynav'],
-			'DAMAIO_DEVIANTART'			=> $config['damaio_icon_deviantart'],
-			'DAMAIO_FACEBOOK'			=> $config['damaio_icon_facebook'],
-			'DAMAIO_FLICKR'				=> $config['damaio_icon_flickr'],
-			'DAMAIO_GITHUB'				=> $config['damaio_icon_github'],
-			'DAMAIO_INSTAGRAM'			=> $config['damaio_icon_instagram'],
-			'DAMAIO_LINKEDIN'			=> $config['damaio_icon_linkedin'],
-			'DAMAIO_PINTEREST'			=> $config['damaio_icon_pinterest'],
-			'DAMAIO_REDDIT'				=> $config['damaio_icon_reddit'],
-			'DAMAIO_SKYPE'				=> $config['damaio_icon_skype'],
-			'DAMAIO_SNAPCHAT'			=> $config['damaio_icon_snapchat'],
-			'DAMAIO_SOUNDCLOUD'			=> $config['damaio_icon_soundcloud'],
-			'DAMAIO_STEAM'				=> $config['damaio_icon_steam'],
-			'DAMAIO_TUMBLR'				=> $config['damaio_icon_tumblr'],
-			'DAMAIO_TWITTER'			=> $config['damaio_icon_twitter'],
-			'DAMAIO_WHATSAPP'			=> $config['damaio_icon_whatsapp'],
-			'DAMAIO_YOUTUBE'			=> $config['damaio_icon_youtube'],
 			'DAMAIO_FEED'				=> $config['damaio_icon_feed'],
 			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
 			'DAMAIO_CHECK_FEED'			=> sprintf($language->lang('ACP_DAMAIO_FEED_EXPLAIN'), append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_board&mode=feed')),
-			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url, append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install')),
-		]);
+			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url, append_sid($phpbb_admin_path . 'index.' . $php_ext, 'i=acp_styles&mode=install'))
+		], $template_icons_vars));
 
 		$sql = 'SELECT style_id, style_active, style_path
 				FROM ' . STYLES_TABLE . '
@@ -175,7 +161,7 @@ class damaio_module
 			$style_cfg = $this->read_style_cfg($row['style_path']);
 			$style_current_version = htmlspecialchars($style_cfg['style_version'], ENT_COMPAT);
 
-			$style_version_check = '';
+			$style_version_check = false;
 			$style_version_info = '';
 
 			if (version_compare($style_current_version, $damaio_version_min) >= 0)
@@ -184,7 +170,6 @@ class damaio_module
 			}
 			else
 			{
-				$style_version_check = false;
 				$style_version_info = sprintf($language->lang('ACP_DAMAIO_STYLE_INCOMPATIBLE'), $style_current_version, $damaio_version_min, $damaio_phpbb_url, $damaio_github_url);
 			}
 

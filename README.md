@@ -2,8 +2,8 @@
 phpBB extension to configure the damaïo style without having to modify the files.
 
 ## Minimum Requirements
-* phpBB ≥ 3.3.11
-* [damaïo](https://github.com/cabot/damaio) ≥ 1.0.8
+* phpBB ≥ 3.3.15
+* [damaïo](https://github.com/cabot/damaio) ≥ 1.0.12
 
 ## Install (easy)
 1. Download the latest ready-to-install version [cabot_damaioconfiguration.zip](https://github.com/cabot/damaioconfiguration/releases/latest/download/cabot_damaioconfiguration.zip).

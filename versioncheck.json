@@ -1,7 +1,7 @@
 {
     "stable": {
         "1.0": {
-            "current": "1.0.1",
+            "current": "1.0.2",
             "download": "https://github.com/cabot/damaioconfiguration/releases/latest/download/cabot_damaioconfiguration.zip",
             "announcement": "https://github.com/cabot/damaioconfiguration",
             "eol": null,
