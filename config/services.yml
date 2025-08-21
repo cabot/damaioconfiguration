@@ -13,3 +13,18 @@ services:
             - '@cabot.damaioconfiguration.logo_path_helper'
         tags:
             - { name: event.listener }
+
+    cabot.damaioconfiguration.acp_controller:
+        class: cabot\damaioconfiguration\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@config_text'
+            - '@dbal.conn'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.adm_relative_path%'
+            - '%core.php_ext%'
+            - '%core.root_path%'

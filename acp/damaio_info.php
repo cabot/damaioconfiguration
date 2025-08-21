@@ -3,7 +3,7 @@
  *
  * Damaïo style configuration extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2023 - cabot
+ * @copyright (c) 2023-2025 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -19,9 +19,9 @@ class damaio_info
 			'title'		=> 'ACP_DAMAIO_MODULE_TITLE',
 			'modes'		=> [
 				'settings'	=> [
-					'title' 	=> 'ACP_DAMAIO_CONFIG',
+					'title' 	=> 'ACP_DAMAIO_MODULE_CONFIG',
 					'auth' 		=> 'cabot/damaioconfiguration && acl_a_board',
-					'cat'		=> ['ACP_DAMAIO_CONFIG'],
+					'cat'		=> ['ACP_DAMAIO_MODULE_TITLE'],
 				],
 			],
 		];

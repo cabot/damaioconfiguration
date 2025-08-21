@@ -1,31 +1,31 @@
 {
-    "name": "cabot/damaioconfiguration",
-    "type": "phpbb-extension",
-    "description": "Extension to configure the damaïo style without having to modify the files.",
-    "homepage": "https://github.com/cabot/damaioconfiguration",
-    "version": "1.0.2",
-    "license": "GPL-2.0-only",
-    "authors": [
-        {
-            "name": "cabot",
-            "homepage": "https://forum.cabotweb.fr",
-            "role": "SushiMaker"
-        }
-    ],
-    "require": {
-        "php": ">=7.2",
-        "composer/installers": "~1.0"
-    },
-    "extra": {
-        "display-name": "Damaïo configuration",
-        "soft-require": {
-            "phpbb/phpbb": ">=3.3.15"
-        },
-        "version-check": {
-            "host": "raw.githubusercontent.com",
-            "directory": "/cabot/damaioconfiguration/master",
-            "filename": "versioncheck.json",
-            "ssl": true
-        }
-    }
+	"name": "cabot/damaioconfiguration",
+	"type": "phpbb-extension",
+	"description": "Extension to configure the damaïo style without having to modify the files.",
+	"homepage": "https://github.com/cabot/damaioconfiguration",
+	"version": "1.0.3",
+	"license": "GPL-2.0-only",
+	"authors": [
+		{
+			"name": "cabot",
+			"homepage": "https://forum.cabotweb.fr",
+			"role": "SushiMaker"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"composer/installers": "~1.0"
+	},
+	"extra": {
+		"display-name": "Damaïo configuration",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.3.15"
+		},
+		"version-check": {
+			"host": "raw.githubusercontent.com",
+			"directory": "/cabot/damaioconfiguration/master",
+			"filename": "versioncheck.json",
+			"ssl": true
+		}
+	}
 }
