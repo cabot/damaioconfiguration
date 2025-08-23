@@ -33,4 +33,4 @@ phpBB extension to configure the damaïo style without having to modify the file
 ## Screenshot
 ![damaio configuration](https://upload.cabotweb.fr/images/2023/10/23/damaio-configuration.png)
 
-© 2023 - cabot
+© 2023-2025 - cabot

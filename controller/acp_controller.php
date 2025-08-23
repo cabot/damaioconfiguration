@@ -21,7 +21,7 @@ use phpbb\user;
 
 class acp_controller
 {
-		/** @var config $config */
+	/** @var config $config */
 	protected $config;
 
 	/** @var db_text $config_text */
@@ -61,6 +61,9 @@ class acp_controller
 	public $u_action;
 
 	const STYLES_PATH = 'styles/';
+	const DAMAIO_STYLE_NAME = 'damaio';
+	const DAMAIO_PHPBB_URL = 'https://www.phpbb.com/customise/db/style/dama%C3%AFo/';
+	const DAMAIO_GITHUB_URL = 'https://github.com/cabot/damaio';
 
 	/**
 	 * Constructor
@@ -92,7 +95,7 @@ class acp_controller
 		$this->root_path = $root_path;
 		$this->styles_path = $this->root_path . self::STYLES_PATH;
 
-		// Load language files
+		// Load language file
 		$this->language->add_lang('acp_damaio', 'cabot/damaioconfiguration');
 	}
 
@@ -105,8 +108,8 @@ class acp_controller
 	{
 		$phpbb_admin_path = $this->root_path . $this->adm_relative_path;
 		$damaio_version_min = $this->config['damaio_style_version_min'];
-		$damaio_phpbb_url = 'https://www.phpbb.com/customise/db/style/dama%C3%AFo/';
-		$damaio_github_url = 'https://github.com/cabot/damaio';
+		$damaio_phpbb_url = self::DAMAIO_PHPBB_URL;
+		$damaio_github_url = self::DAMAIO_GITHUB_URL;
 
 		$damaio_icons = [
 			'bluesky', 'deviantart', 'discord', 'facebook', 'flickr', 'github',
@@ -115,39 +118,86 @@ class acp_controller
 			'tumblr', 'twitter', 'vkontakte', 'whatsapp', 'youtube'
 		];
 
-		add_form_key('damaioconfiguration/acp_damaio');
+		$form_key = 'damaioconfiguration/acp_damaio';
+		add_form_key($form_key);
 
-		$submit = $this->request->is_set_post('submit');
-		if ($submit)
+		$errors = [];
+
+		$damaio_style_id = 0;
+		$damaio_style_active = false;
+		$u_damaio_style_path = '';
+		$style_not_found_msg = sprintf($this->language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url, append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_styles&mode=install'));
+
+		$sql = 'SELECT style_id, style_active, style_path
+				FROM ' . STYLES_TABLE . "
+				WHERE style_path = '" . self::DAMAIO_STYLE_NAME . "'";
+		$result = $this->db->sql_query($sql);
+
+		if ($row = $this->db->sql_fetchrow($result))
 		{
-			if (!check_form_key('damaioconfiguration/acp_damaio'))
+			$damaio_style_id = (int) $row['style_id'];
+			$damaio_style_active = (bool) $row['style_active'];
+
+			$style_cfg = $this->read_style_cfg($row['style_path']);
+
+			if ($style_cfg === false)
 			{
-				trigger_error('FORM_INVALID');
+				$errors[] = $style_not_found_msg;
+				$damaio_style_id = 0;
+			}
+			else
+			{
+				$style_current_version = htmlspecialchars($style_cfg['style_version'], ENT_COMPAT);
+
+				if (version_compare($style_current_version, $damaio_version_min) < 0)
+				{
+					$errors[] = sprintf($this->language->lang('ACP_DAMAIO_STYLE_INCOMPATIBLE'), $style_current_version, $damaio_version_min, $damaio_phpbb_url, $damaio_github_url);
+				}
+				else
+				{
+					$u_damaio_style_path = append_sid($this->root_path . 'index.' . $this->php_ext, 'style=' . $damaio_style_id);
+				}
+			}
+		}
+		else
+		{
+			$errors[] = $style_not_found_msg;
+		}
+		$this->db->sql_freeresult($result);
+
+		if ($this->request->is_set_post('submit'))
+		{
+			if (!check_form_key($form_key))
+			{
+				$errors[] = $this->language->lang('FORM_INVALID');
 			}
 
-			$this->config->set('damaio_enable', $this->request->variable('damaio_enable', false));
-			$this->config->set('damaio_logo_path', $this->request->variable('damaio_logo_path', ''));
-			$this->config->set('damaio_logo_width', $this->request->variable('damaio_logo_width', ''));
-			$this->config->set('damaio_logo_height', $this->request->variable('damaio_logo_height', ''));
-			$this->config->set('damaio_color_picker', $this->request->variable('damaio_color_picker', true));
-			$this->config->set('damaio_maincolor1', $this->request->variable('damaio_maincolor1', ''));
-			$this->config->set('damaio_maincolor2', $this->request->variable('damaio_maincolor2', ''));
-			$this->config->set('damaio_maincolor3', $this->request->variable('damaio_maincolor3', ''));
-			$this->config->set('damaio_modal_login', $this->request->variable('damaio_modal_login', true));
-			$this->config->set('damaio_header_width', $this->request->variable('damaio_header_width', true));
-			$this->config->set('damaio_footer_width', $this->request->variable('damaio_footer_width', false));
-			$this->config->set('damaio_password_show', $this->request->variable('damaio_password_show', true));
-			$this->config->set('damaio_main_width', $this->request->variable('damaio_main_width', ''));
-			$this->config->set('damaio_stickynav', $this->request->variable('damaio_stickynav', false));
-			$this->config->set('damaio_icon_feed', $this->request->variable('damaio_icon_feed', false));
-			$this->config_text->set('damaio_custom_css', htmlspecialchars_decode($this->request->variable('damaio_custom_css', '', true)));
-			foreach ($damaio_icons as $icon)
+			if (empty($errors))
 			{
-				$this->config->set("damaio_icon_{$icon}", $this->request->variable("damaio_icon_{$icon}", ''));
-			}
+				$this->config->set('damaio_enable', $this->request->variable('damaio_enable', false));
+				$this->config->set('damaio_logo_path', $this->request->variable('damaio_logo_path', ''));
+				$this->config->set('damaio_logo_width', $this->request->variable('damaio_logo_width', ''));
+				$this->config->set('damaio_logo_height', $this->request->variable('damaio_logo_height', ''));
+				$this->config->set('damaio_color_picker', $this->request->variable('damaio_color_picker', true));
+				$this->config->set('damaio_maincolor1', $this->request->variable('damaio_maincolor1', ''));
+				$this->config->set('damaio_maincolor2', $this->request->variable('damaio_maincolor2', ''));
+				$this->config->set('damaio_maincolor3', $this->request->variable('damaio_maincolor3', ''));
+				$this->config->set('damaio_modal_login', $this->request->variable('damaio_modal_login', true));
+				$this->config->set('damaio_header_width', $this->request->variable('damaio_header_width', true));
+				$this->config->set('damaio_footer_width', $this->request->variable('damaio_footer_width', false));
+				$this->config->set('damaio_password_show', $this->request->variable('damaio_password_show', true));
+				$this->config->set('damaio_main_width', $this->request->variable('damaio_main_width', ''));
+				$this->config->set('damaio_stickynav', $this->request->variable('damaio_stickynav', false));
+				$this->config->set('damaio_icon_feed', $this->request->variable('damaio_icon_feed', false));
+				$this->config_text->set('damaio_custom_css', htmlspecialchars_decode($this->request->variable('damaio_custom_css', '', true)));
+				foreach ($damaio_icons as $icon)
+				{
+					$this->config->set("damaio_icon_{$icon}", $this->request->variable("damaio_icon_{$icon}", ''));
+				}
 
-			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'ACP_DAMAIO_UPDATED_LOG');
-			trigger_error($this->language->lang('ACP_DAMAIO_SAVE') . adm_back_link($this->u_action));
+				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'ACP_DAMAIO_UPDATED_LOG');
+				trigger_error($this->language->lang('ACP_DAMAIO_SAVE') . adm_back_link($this->u_action));
+			}
 		}
 
 		$template_icons_vars = [];
@@ -156,61 +206,35 @@ class acp_controller
 			$template_icons_vars['DAMAIO_' . strtoupper($icon)] = $this->config["damaio_icon_{$icon}"];
 		}
 
-		$damaiocustomcss = $this->config_text->get('damaio_custom_css');
+		$s_errors = !empty($errors);
 
 		$this->template->assign_vars(array_merge([
-			'DAMAIO_ENABLE'				=> $this->config['damaio_enable'],
+			'S_ERROR'					=> $s_errors,
+			'ERROR_MSG'					=> $s_errors ? implode('<br>', $errors) : '',
+
+			'DAMAIO_STYLE_ACTIVE'		=> $damaio_style_active,
+			'U_DAMAIO_STYLE_PATH'		=> $u_damaio_style_path,
+			'DAMAIO_STYLE_DEACTIVATED'	=> sprintf($this->language->lang('ACP_DAMAIO_STYLE_DEACTIVATED'), append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_styles&mode=style')),
+
+			'U_ACTION'					=> $this->u_action,
+			'DAMAIO_ENABLE'				=> (bool) $this->config['damaio_enable'],
 			'DAMAIO_LOGO_PATH'			=> $this->config['damaio_logo_path'],
 			'DAMAIO_LOGO_WIDTH'			=> $this->config['damaio_logo_width'],
 			'DAMAIO_LOGO_HEIGHT'		=> $this->config['damaio_logo_height'],
-			'DAMAIO_COLOR_PICKER'		=> $this->config['damaio_color_picker'],
+			'DAMAIO_COLOR_PICKER'		=> (bool) $this->config['damaio_color_picker'],
 			'DAMAIO_MAINCOLOR1'			=> $this->config['damaio_maincolor1'],
 			'DAMAIO_MAINCOLOR2'			=> $this->config['damaio_maincolor2'],
 			'DAMAIO_MAINCOLOR3'			=> $this->config['damaio_maincolor3'],
-			'DAMAIO_MODAL_LOGIN'		=> $this->config['damaio_modal_login'],
-			'DAMAIO_HEADER_WIDTH'		=> $this->config['damaio_header_width'],
-			'DAMAIO_FOOTER_WIDTH'		=> $this->config['damaio_footer_width'],
-			'DAMAIO_PASSWORD_SHOW'		=> $this->config['damaio_password_show'],
+			'DAMAIO_MODAL_LOGIN'		=> (bool) $this->config['damaio_modal_login'],
+			'DAMAIO_HEADER_WIDTH'		=> (bool) $this->config['damaio_header_width'],
+			'DAMAIO_FOOTER_WIDTH'		=> (bool) $this->config['damaio_footer_width'],
+			'DAMAIO_PASSWORD_SHOW'		=> (bool) $this->config['damaio_password_show'],
 			'DAMAIO_MAIN_WIDTH'			=> $this->config['damaio_main_width'],
-			'DAMAIO_STICKYNAV'			=> $this->config['damaio_stickynav'],
-			'DAMAIO_FEED'				=> $this->config['damaio_icon_feed'],
-			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,
+			'DAMAIO_STICKYNAV'			=> (bool) $this->config['damaio_stickynav'],
+			'DAMAIO_FEED'				=> (bool) $this->config['damaio_icon_feed'],
+			'DAMAIO_CUSTOM_CSS'			=> $this->config_text->get('damaio_custom_css'),
 			'DAMAIO_CHECK_FEED'			=> sprintf($this->language->lang('ACP_DAMAIO_FEED_EXPLAIN'), append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_board&mode=feed')),
-			'DAMAIO_STYLE_NOT_FOUND'	=> sprintf($this->language->lang('ACP_DAMAIO_STYLE_NOT_FOUND'), $damaio_version_min, $damaio_phpbb_url, $damaio_github_url, append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_styles&mode=install'))
 		], $template_icons_vars));
-
-		$sql = 'SELECT style_id, style_active, style_path
-				FROM ' . STYLES_TABLE . '
-				WHERE style_path = "damaio"';
-		$result = $this->db->sql_query($sql);
-
-		if ($row = $this->db->sql_fetchrow($result))
-		{
-			$style_cfg = $this->read_style_cfg($row['style_path']);
-			$style_current_version = htmlspecialchars($style_cfg['style_version'], ENT_COMPAT);
-
-			$style_version_check = false;
-			$style_version_info = '';
-
-			if (version_compare($style_current_version, $damaio_version_min) >= 0)
-			{
-				$style_version_check = true;
-			}
-			else
-			{
-				$style_version_info = sprintf($this->language->lang('ACP_DAMAIO_STYLE_INCOMPATIBLE'), $style_current_version, $damaio_version_min, $damaio_phpbb_url, $damaio_github_url);
-			}
-
-			$this->template->assign_vars([
-				'DAMAIO_STYLE_ID'				=> $row['style_id'],
-				'DAMAIO_STYLE_ACTIVE'			=> $row['style_active'],
-				'U_DAMAIO_STYLE_PATH'			=> append_sid($this->root_path . 'index.' . $this->php_ext, 'style=' . $row['style_id']),
-				'DAMAIO_STYLE_COMPATIBLE'		=> $style_version_check,
-				'DAMAIO_STYLE_DEACTIVATED'		=> sprintf($this->language->lang('ACP_DAMAIO_STYLE_DEACTIVATED'), append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_styles&mode=style')),
-				'DAMAIO_STYLE_VERSION_INFO'		=> $style_version_info,
-			]);
-		}
-		$this->db->sql_freeresult($result);
 	}
 
 	/**
