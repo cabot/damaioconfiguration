@@ -98,6 +98,7 @@ class listener implements EventSubscriberInterface
 			'DAMAIO_EXT_HEADER_WIDTH'	=> $this->config['damaio_header_width'],
 			'DAMAIO_EXT_FOOTER_WIDTH'	=> $this->config['damaio_footer_width'],
 			'DAMAIO_EXT_PASSWORD_SHOW'	=> $this->config['damaio_password_show'],
+			'DAMAIO_EXT_SCROLLTOP'		=> $this->config['damaio_scrolltop'],
 			'DAMAIO_EXT_MAIN_WIDTH'		=> $this->config['damaio_main_width'],
 			'DAMAIO_EXT_FEED'			=> $this->config['damaio_icon_feed'],
 			'DAMAIO_CUSTOM_CSS'			=> $damaiocustomcss,

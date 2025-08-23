@@ -188,6 +188,7 @@ class acp_controller
 				$this->config->set('damaio_password_show', $this->request->variable('damaio_password_show', true));
 				$this->config->set('damaio_main_width', $this->request->variable('damaio_main_width', ''));
 				$this->config->set('damaio_stickynav', $this->request->variable('damaio_stickynav', false));
+				$this->config->set('damaio_scrolltop', $this->request->variable('damaio_scrolltop', true));
 				$this->config->set('damaio_icon_feed', $this->request->variable('damaio_icon_feed', false));
 				$this->config_text->set('damaio_custom_css', htmlspecialchars_decode($this->request->variable('damaio_custom_css', '', true)));
 				foreach ($damaio_icons as $icon)
@@ -231,6 +232,7 @@ class acp_controller
 			'DAMAIO_PASSWORD_SHOW'		=> (bool) $this->config['damaio_password_show'],
 			'DAMAIO_MAIN_WIDTH'			=> $this->config['damaio_main_width'],
 			'DAMAIO_STICKYNAV'			=> (bool) $this->config['damaio_stickynav'],
+			'DAMAIO_SCROLLTOP'			=> (bool) $this->config['damaio_scrolltop'],
 			'DAMAIO_FEED'				=> (bool) $this->config['damaio_icon_feed'],
 			'DAMAIO_CUSTOM_CSS'			=> $this->config_text->get('damaio_custom_css'),
 			'DAMAIO_CHECK_FEED'			=> sprintf($this->language->lang('ACP_DAMAIO_FEED_EXPLAIN'), append_sid($phpbb_admin_path . 'index.' . $this->php_ext, 'i=acp_board&mode=feed')),

@@ -19,7 +19,7 @@
 	"extra": {
 		"display-name": "Damaïo configuration",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.3.15"
+			"phpbb/phpbb": ">=3.3.16,<4.0.0@dev"
 		},
 		"version-check": {
 			"host": "raw.githubusercontent.com",
