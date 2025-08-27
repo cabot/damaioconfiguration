@@ -96,7 +96,7 @@ class acp_controller
 		$this->styles_path = $this->root_path . self::STYLES_PATH;
 
 		// Load language file
-		$this->language->add_lang('acp_damaio', 'cabot/damaioconfiguration');
+		$this->language->add_lang(['acp_damaio', 'main_damaio'], 'cabot/damaioconfiguration');
 	}
 
 	/**
