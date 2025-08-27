@@ -18,6 +18,7 @@ use phpbb\log\log;
 use phpbb\request\request;
 use phpbb\template\template;
 use phpbb\user;
+use cabot\damaioconfiguration\helper\icon_list_helper;
 
 class acp_controller
 {
@@ -111,12 +112,7 @@ class acp_controller
 		$damaio_phpbb_url = self::DAMAIO_PHPBB_URL;
 		$damaio_github_url = self::DAMAIO_GITHUB_URL;
 
-		$damaio_icons = [
-			'bluesky', 'deviantart', 'discord', 'facebook', 'flickr', 'github',
-			'instagram', 'linkedin', 'mastodon', 'paypal', 'pinterest', 'reddit',
-			'skype', 'snapchat', 'soundcloud', 'steam', 'telegram', 'tiktok',
-			'tumblr', 'twitter', 'vkontakte', 'whatsapp', 'youtube'
-		];
+		$damaio_icons = icon_list_helper::get_icons();
 
 		$form_key = 'damaioconfiguration/acp_damaio';
 		add_form_key($form_key);
@@ -201,11 +197,7 @@ class acp_controller
 			}
 		}
 
-		$template_icons_vars = [];
-		foreach ($damaio_icons as $icon)
-		{
-			$template_icons_vars['DAMAIO_' . strtoupper($icon)] = $this->config["damaio_icon_{$icon}"];
-		}
+		$template_icons_vars = icon_list_helper::get_icons_template_vars($this->config);
 
 		$s_errors = !empty($errors);
 

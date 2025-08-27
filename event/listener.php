@@ -14,6 +14,7 @@ use phpbb\config\config;
 use phpbb\config\db_text;
 use phpbb\template\template;
 use cabot\damaioconfiguration\helper\logo_path_helper;
+use cabot\damaioconfiguration\helper\icon_list_helper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -70,17 +71,7 @@ class listener implements EventSubscriberInterface
 
 	public function damaioconfiguration()
 	{
-		$damaio_icons = [
-			'bluesky', 'deviantart', 'discord', 'facebook', 'flickr', 'github',
-			'instagram', 'linkedin', 'mastodon', 'paypal', 'pinterest', 'reddit',
-			'skype', 'snapchat', 'soundcloud', 'steam', 'telegram', 'tiktok',
-			'tumblr', 'twitter', 'vkontakte', 'whatsapp', 'youtube'
-		];
-		$template_icons_vars = [];
-		foreach ($damaio_icons as $icon)
-		{
-			$template_icons_vars['DAMAIO_EXT_' . strtoupper($icon)] = $this->config["damaio_icon_{$icon}"];
-		}
+		$template_icons_vars = icon_list_helper::get_icons_template_vars($this->config, 'DAMAIO_EXT_');
 
 		$damaiocustomcss = $this->config_text->get('damaio_custom_css');
 
